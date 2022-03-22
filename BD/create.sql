@@ -61,7 +61,8 @@ CREATE TABLE Account_types(
 	CONSTRAINT profitability_check CHECK((profitability_percent IS NULL AND profitability_fixed IS NOT NULL) OR (profitability_percent IS NOT NULL AND profitability_fixed IS NULL)),
 	debiting boolean NOT NULL,
 	accrual boolean NOT NULL,
-	period profitability_period NOT NULL
+	period profitability_period NOT NULL,
+	valid boolean NOT NULL DEFAULT true
 );
 
 CREATE TYPE account_status as ENUM ('Opened', 'Closed', 'Frozen');

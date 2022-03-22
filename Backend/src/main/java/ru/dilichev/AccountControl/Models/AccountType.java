@@ -36,4 +36,7 @@ public class AccountType {
     @Column(nullable = false, name = "period")
     @NonNull
     private String period;
+
+    @Column(nullable = false, name = "valid")
+    private boolean valid;
 }
