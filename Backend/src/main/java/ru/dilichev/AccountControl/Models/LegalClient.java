@@ -1,43 +1,34 @@
 package ru.dilichev.AccountControl.Models;
 
-public class LegalClient {
-    private long id;
+import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "Legal_clients")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class LegalClient implements Serializable {
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    @ToString.Exclude
+    @NonNull
+    private Client client;
+
+    @Column(nullable = false, name = "name")
+    @NonNull
     private String name;
+
+    @Column(nullable = false, name = "form")
+    @NonNull
     private String form;
+
+    @Column(nullable = false, name = "tin")
+    @NonNull
     private String tin;
-
-    public LegalClient()
-    {}
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getForm() {
-        return form;
-    }
-
-    public String getTin() {
-        return tin;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setForm(String form) {
-        this.form = form;
-    }
-
-    public void setTin(String tin) {
-        this.tin = tin;
-    }
 }

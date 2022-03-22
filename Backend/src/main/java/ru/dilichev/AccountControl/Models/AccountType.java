@@ -1,70 +1,39 @@
 package ru.dilichev.AccountControl.Models;
 
+import lombok.*;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Account_types")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class AccountType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "id")
     private long id;
+
+    @Column(nullable = false, name = "name")
+    @NonNull
     private String name;
-    private double profitability_percent;
-    private double profitability_fixed;
+
+    @Column(nullable = false, name = "profitability_percent")
+    private Double profitability_percent;
+
+    @Column(nullable = false, name = "profitability_fixed")
+    private Double profitability_fixed;
+
+    @Column(nullable = false, name = "debiting")
     private boolean debiting;
+
+    @Column(nullable = false, name = "accrual")
     private boolean accrual;
+
+    @Column(nullable = false, name = "period")
+    @NonNull
     private String period;
-
-    public AccountType()
-    {}
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getProfitability_percent() {
-        return profitability_percent;
-    }
-
-    public void setProfitability_percent(double profitability_percent) {
-        this.profitability_percent = profitability_percent;
-    }
-
-    public double getProfitability_fixed() {
-        return profitability_fixed;
-    }
-
-    public void setProfitability_fixed(double profitability_fixed) {
-        this.profitability_fixed = profitability_fixed;
-    }
-
-    public boolean isDebiting() {
-        return debiting;
-    }
-
-    public void setDebiting(boolean debiting) {
-        this.debiting = debiting;
-    }
-
-    public boolean isAccrual() {
-        return accrual;
-    }
-
-    public void setAccrual(boolean accrual) {
-        this.accrual = accrual;
-    }
-
-    public String getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(String period) {
-        this.period = period;
-    }
 }

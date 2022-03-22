@@ -1,43 +1,32 @@
 package ru.dilichev.AccountControl.Models;
 
-public class Client {
+import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "Clients")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class Client implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "id")
     private long id;
+
+    @Column(nullable = false, name = "type")
+    @NonNull
     private String type;
+
+    @Column(nullable = false, name = "phone")
+    @NonNull
     private String phone;
+
+    @Column(nullable = false, name = "address")
+    @NonNull
     private String address;
-
-    public Client()
-    {}
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
 }

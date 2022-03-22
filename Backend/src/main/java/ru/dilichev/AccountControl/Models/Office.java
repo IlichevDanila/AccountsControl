@@ -1,34 +1,27 @@
 package ru.dilichev.AccountControl.Models;
 
+import lombok.*;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Offices")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Office {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "id")
     private long id;
+
+    @Column(nullable = false, name = "phone")
+    @NonNull
     private String phone;
+
+    @Column(nullable = false, name = "address")
+    @NonNull
     private String address;
-
-    public Office()
-    {}
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }
