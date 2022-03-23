@@ -1,6 +1,6 @@
 package ru.dilichev.AccountControl.DAO;
 
-import ru.dilichev.AccountControl.DAO.Impl.OfficeDAOImpl;
+import ru.dilichev.AccountControl.DAO.Impl.*;
 
 public class DAOFactory {
     static private ClientDAO clientDAO = null;
@@ -15,22 +15,42 @@ public class DAOFactory {
     {}
 
     static public ClientDAO getClientDAO() {
+        if(clientDAO == null)
+        {
+            clientDAO = new ClientDAOImpl();
+        }
         return clientDAO;
     }
 
     static public LegalClientDAO getLegalClientDAO() {
+        if(legalClientDAO == null)
+        {
+            legalClientDAO = new LegalClientDAOImpl();
+        }
         return legalClientDAO;
     }
 
     static public PhysicalClientDAO getPhysicalClientDAO() {
+        if(physicalClientDAO == null)
+        {
+            physicalClientDAO = new PhysicalClientDAOImpl();
+        }
         return physicalClientDAO;
     }
 
     static public AccountTypeDAO getAccountTypeDAO() {
+        /*if(accountTypeDAO == null)
+        {
+            accountTypeDAO = new AccountTypeDAOImpl();
+        }*/
         return accountTypeDAO;
     }
 
     static public AccountDAO getAccountDAO() {
+        /*if(accountDAO == null)
+        {
+            accountDAO = new AccountDAOImpl();
+        }*/
         return accountDAO;
     }
 
@@ -43,6 +63,10 @@ public class DAOFactory {
     }
 
     static public TransactionDAO getTransactionDAO() {
+        if(transactionDAO == null)
+        {
+            transactionDAO = new TransactionDAOImpl();
+        }
         return transactionDAO;
     }
 }

@@ -1,7 +1,6 @@
 package ru.dilichev.AccountControl.DAO.Impl;
 
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import ru.dilichev.AccountControl.DAO.OfficeDAO;
 import ru.dilichev.AccountControl.Models.Office;
 import ru.dilichev.AccountControl.util.HibernateUtil;
@@ -42,14 +41,10 @@ public class OfficeDAOImpl implements OfficeDAO {
     @Override
     public List<Office> getOfficeByCondition(Long id, String phone, String address)
     {
-        String sql;
+        String sql = "FROM OFFICE";
 
-        if(id == null && phone == null && address == null)
-        {
-            sql = "FROM Office";
-        }
-        else {
-            sql = "FROM Office WHERE";
+        if(id != null || phone != null || address != null) {
+            sql += " WHERE";
             if(id != null)
             {
                 sql += " id = " + id;
@@ -71,8 +66,6 @@ public class OfficeDAOImpl implements OfficeDAO {
                 sql += "address = '" + address + "'";
             }
         }
-
-        System.out.println(sql);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

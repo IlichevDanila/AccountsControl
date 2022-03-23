@@ -5,7 +5,10 @@ import org.hibernate.query.Query;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.dilichev.AccountControl.DAO.DAOFactory;
+import ru.dilichev.AccountControl.Models.LegalClient;
 import ru.dilichev.AccountControl.Models.Office;
+import ru.dilichev.AccountControl.Models.PhysicalClient;
+import ru.dilichev.AccountControl.Models.Transaction;
 import ru.dilichev.AccountControl.util.HibernateUtil;
 
 import java.util.List;
@@ -16,11 +19,13 @@ public class AccountControlApplication {
 	public static void main(String[] args)
 	{
 		//SpringApplication.run(AccountControlApplication.class, args);
-		List<Office> offices = DAOFactory.getOfficeDAO().getOfficeByCondition(1L, null, null);
+		List<PhysicalClient> phs = DAOFactory.getPhysicalClientDAO().getPhysicalClientByCondition(null, null,
+				null, null, null, null);
 
-		for(Office off: offices)
+		System.out.println(phs.size());
+		for(PhysicalClient ph: phs)
 		{
-			System.out.println(off.getAddress());
+			System.out.println(ph.getClient().getPhone());
 		}
 	}
 
