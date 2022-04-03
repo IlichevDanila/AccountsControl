@@ -1,16 +1,26 @@
 package ru.dilichev.AccountControl.DAO.Impl;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import ru.dilichev.AccountControl.DAO.TransactionDAO;
 import ru.dilichev.AccountControl.Models.Transaction;
-import ru.dilichev.AccountControl.util.HibernateUtil;
 
 import java.util.List;
 
 public class TransactionDAOImpl implements TransactionDAO {
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public void setSessionFactory(LocalSessionFactoryBean sessionFactoryBean)
+    {
+        sessionFactory = sessionFactoryBean.getObject();
+    }
+
     @Override
     public void addTransaction(Transaction tran) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(tran);
         session.getTransaction().commit();
@@ -19,7 +29,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     @Override
     public void deleteTransaction(Transaction tran) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.delete(tran);
         session.getTransaction().commit();
@@ -28,7 +38,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     @Override
     public void updateTransaction(Transaction tran) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(tran);
         session.getTransaction().commit();
@@ -36,13 +46,11 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
     @Override
-    public List<Transaction> getTransactionByCondition(Long id, String debit_account_id, String credit_account_id,
-                                                       String tran_time_low, String tran_time_high,
-                                                       Double amount_low, Double amount_high) {
+    public String SQLByCondition(Long id, String debit_account_id, String credit_account_id, String tran_time_low, String tran_time_high, Double amount_low, Double amount_high) {
         String sql = "FROM Transaction";
         boolean add_and = false;
         if(id != null || debit_account_id != null || credit_account_id != null || tran_time_low != null ||
-            tran_time_high != null || amount_low != null || amount_high != null)
+                tran_time_high != null || amount_low != null || amount_high != null)
         {
             sql += " WHERE";
             if(id != null)
@@ -130,7 +138,18 @@ public class TransactionDAOImpl implements TransactionDAO {
             }
         }
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        return sql;
+    }
+
+    @Override
+    public List<Transaction> getTransactionByCondition(Long id, String debit_account_id, String credit_account_id,
+                                                       String tran_time_low, String tran_time_high,
+                                                       Double amount_low, Double amount_high) {
+        String sql = SQLByCondition(id, debit_account_id, credit_account_id,
+                tran_time_low, tran_time_high,
+                amount_low, amount_high);
+
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         List<Transaction> res = session.createQuery(sql).list();
@@ -140,14 +159,21 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
     @Override
-    public List<Transaction> getTransactionByAccount(String account_id) {
+    public String SQLByAccount(String account_id) {
         String sql = "FROM Transaction";
         if(account_id != null)
         {
             sql += " WHERE debit_account_id = '" + account_id + "' OR credit_account_id = '" + account_id + "'";
         }
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        return sql;
+    }
+
+    @Override
+    public List<Transaction> getTransactionByAccount(String account_id) {
+        String sql = SQLByAccount(account_id);
+
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         List<Transaction> res = session.createQuery(sql).list();

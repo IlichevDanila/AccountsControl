@@ -1,16 +1,26 @@
 package ru.dilichev.AccountControl.DAO.Impl;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import ru.dilichev.AccountControl.DAO.LegalClientDAO;
 import ru.dilichev.AccountControl.Models.LegalClient;
-import ru.dilichev.AccountControl.util.HibernateUtil;
 
 import java.util.List;
 
 public class LegalClientDAOImpl implements LegalClientDAO {
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public void setSessionFactory(LocalSessionFactoryBean sessionFactoryBean)
+    {
+        sessionFactory = sessionFactoryBean.getObject();
+    }
+
     @Override
     public void addLegalClient(LegalClient lh) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(lh.getClient());
         session.save(lh);
@@ -20,7 +30,7 @@ public class LegalClientDAOImpl implements LegalClientDAO {
 
     @Override
     public void deleteLegalClient(LegalClient lh) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.delete(lh);
         session.delete(lh.getClient());
@@ -30,7 +40,7 @@ public class LegalClientDAOImpl implements LegalClientDAO {
 
     @Override
     public void updateLegalClient(LegalClient lh) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(lh);
         session.update(lh.getClient());
@@ -39,7 +49,7 @@ public class LegalClientDAOImpl implements LegalClientDAO {
     }
 
     @Override
-    public List<LegalClient> getLegalClientByCondition(Long id, String phone, String address, String name, String form, String tin) {
+    public String SQLByCondition(Long id, String phone, String address, String name, String form, String tin) {
         String sql = "FROM LegalClient";
         boolean add_and = false;
 
@@ -67,7 +77,7 @@ public class LegalClientDAOImpl implements LegalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "Client.phone = '" + phone + "'";
+            sql += " Client.phone = '" + phone + "'";
             add_and = true;
         }
         if(address != null)
@@ -76,7 +86,7 @@ public class LegalClientDAOImpl implements LegalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "Client.address = '" + address + "'";
+            sql += " Client.address = '" + address + "'";
             add_and = true;
         }
         if(name != null)
@@ -85,7 +95,7 @@ public class LegalClientDAOImpl implements LegalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "name = '" + name + "'";
+            sql += " name = '" + name + "'";
             add_and = true;
         }
         if(form != null)
@@ -94,7 +104,7 @@ public class LegalClientDAOImpl implements LegalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "form = '" + form + "'";
+            sql += " form = '" + form + "'";
             add_and = true;
         }
         if(tin != null)
@@ -103,13 +113,18 @@ public class LegalClientDAOImpl implements LegalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "tin = '" + tin + "'";
+            sql += " tin = '" + tin + "'";
             add_and = true;
         }
 
-        System.out.println(sql);
+        return sql;
+    }
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+    @Override
+    public List<LegalClient> getLegalClientByCondition(Long id, String phone, String address, String name, String form, String tin) {
+        String sql = SQLByCondition(id, phone, address, name, form, tin);
+
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<LegalClient> res = session.createQuery(sql).list();
         session.close();

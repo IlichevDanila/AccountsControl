@@ -39,18 +39,18 @@ public class DAOFactory {
     }
 
     static public AccountTypeDAO getAccountTypeDAO() {
-        /*if(accountTypeDAO == null)
+        if(accountTypeDAO == null)
         {
             accountTypeDAO = new AccountTypeDAOImpl();
-        }*/
+        }
         return accountTypeDAO;
     }
 
     static public AccountDAO getAccountDAO() {
-        /*if(accountDAO == null)
+        if(accountDAO == null)
         {
             accountDAO = new AccountDAOImpl();
-        }*/
+        }
         return accountDAO;
     }
 

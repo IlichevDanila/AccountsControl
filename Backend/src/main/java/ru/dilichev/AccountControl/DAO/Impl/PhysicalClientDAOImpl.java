@@ -1,16 +1,26 @@
 package ru.dilichev.AccountControl.DAO.Impl;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import ru.dilichev.AccountControl.DAO.PhysicalClientDAO;
 import ru.dilichev.AccountControl.Models.PhysicalClient;
-import ru.dilichev.AccountControl.util.HibernateUtil;
 
 import java.util.List;
 
 public class PhysicalClientDAOImpl implements PhysicalClientDAO {
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public void setSessionFactory(LocalSessionFactoryBean sessionFactoryBean)
+    {
+        sessionFactory = sessionFactoryBean.getObject();
+    }
+
     @Override
     public void addPhysicalClient(PhysicalClient ph) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(ph.getClient());
         session.save(ph);
@@ -20,7 +30,7 @@ public class PhysicalClientDAOImpl implements PhysicalClientDAO {
 
     @Override
     public void deletePhysicalClient(PhysicalClient ph) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.delete(ph);
         session.delete(ph.getClient());
@@ -30,7 +40,7 @@ public class PhysicalClientDAOImpl implements PhysicalClientDAO {
 
     @Override
     public void updatePhysicalClient(PhysicalClient ph) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(ph);
         session.update(ph.getClient());
@@ -39,13 +49,13 @@ public class PhysicalClientDAOImpl implements PhysicalClientDAO {
     }
 
     @Override
-    public List<PhysicalClient> getPhysicalClientByCondition(Long id, String phone, String address, String fullname, String passport, String tin) {
+    public String SQLByCondition(Long id, String phone, String address, String fullname, String passport, String tin) {
         String sql = "FROM PhysicalClient";
         boolean add_and = false;
 
         if (phone != null || address != null)
         {
-            sql += " JOIN Client USING(id) WHERE Client.type = 'Legal'";
+            sql += " JOIN Client USING(id) WHERE Client.type = 'Physical'";
             add_and = true;
         }
         else if(id != null || fullname != null || passport != null || tin != null)
@@ -67,7 +77,7 @@ public class PhysicalClientDAOImpl implements PhysicalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "Client.phone = '" + phone + "'";
+            sql += " Client.phone = '" + phone + "'";
             add_and = true;
         }
         if(address != null)
@@ -76,7 +86,7 @@ public class PhysicalClientDAOImpl implements PhysicalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "Client.address = '" + address + "'";
+            sql += " Client.address = '" + address + "'";
             add_and = true;
         }
         if(fullname != null)
@@ -85,7 +95,7 @@ public class PhysicalClientDAOImpl implements PhysicalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "fullname = '" + fullname + "'";
+            sql += " fullname = '" + fullname + "'";
             add_and = true;
         }
         if(passport != null)
@@ -94,7 +104,7 @@ public class PhysicalClientDAOImpl implements PhysicalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "form = '" + passport + "'";
+            sql += " passport = '" + passport + "'";
             add_and = true;
         }
         if(tin != null)
@@ -103,13 +113,18 @@ public class PhysicalClientDAOImpl implements PhysicalClientDAO {
             {
                 sql += " AND";
             }
-            sql += "tin = '" + tin + "'";
+            sql += " tin = '" + tin + "'";
             add_and = true;
         }
 
-        System.out.println(sql);
+        return sql;
+    }
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+    @Override
+    public List<PhysicalClient> getPhysicalClientByCondition(Long id, String phone, String address, String fullname, String passport, String tin) {
+        String sql = SQLByCondition(id, phone, address, fullname, passport, tin);
+
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<PhysicalClient> res = session.createQuery(sql).list();
         session.close();

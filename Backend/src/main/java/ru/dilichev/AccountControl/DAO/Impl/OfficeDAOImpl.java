@@ -1,17 +1,27 @@
 package ru.dilichev.AccountControl.DAO.Impl;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import ru.dilichev.AccountControl.DAO.OfficeDAO;
 import ru.dilichev.AccountControl.Models.Office;
-import ru.dilichev.AccountControl.util.HibernateUtil;
 
 import java.util.List;
 
 public class OfficeDAOImpl implements OfficeDAO {
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public void setSessionFactory(LocalSessionFactoryBean sessionFactoryBean)
+    {
+        sessionFactory = sessionFactoryBean.getObject();
+    }
+
     @Override
     public void addOffice(Office off)
     {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(off);
         session.getTransaction().commit();
@@ -21,7 +31,7 @@ public class OfficeDAOImpl implements OfficeDAO {
     @Override
     public void deleteOffice(Office off)
     {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.delete(off);
         session.getTransaction().commit();
@@ -31,7 +41,7 @@ public class OfficeDAOImpl implements OfficeDAO {
     @Override
     public void updateOffice(Office off)
     {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(off);
         session.getTransaction().commit();
@@ -39,9 +49,8 @@ public class OfficeDAOImpl implements OfficeDAO {
     }
 
     @Override
-    public List<Office> getOfficeByCondition(Long id, String phone, String address)
-    {
-        String sql = "FROM OFFICE";
+    public String SQLByCondition(Long id, String phone, String address) {
+        String sql = "FROM Office";
 
         if(id != null || phone != null || address != null) {
             sql += " WHERE";
@@ -55,7 +64,7 @@ public class OfficeDAOImpl implements OfficeDAO {
                 {
                     sql += " AND";
                 }
-                sql += "phone = '" + phone + "'";
+                sql += " phone = '" + phone + "'";
             }
             if(address != null)
             {
@@ -63,11 +72,19 @@ public class OfficeDAOImpl implements OfficeDAO {
                 {
                     sql += " AND";
                 }
-                sql += "address = '" + address + "'";
+                sql += " address = '" + address + "'";
             }
         }
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        return sql;
+    }
+
+    @Override
+    public List<Office> getOfficeByCondition(Long id, String phone, String address)
+    {
+        String sql = SQLByCondition(id, phone, address);
+
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         List<Office> res = session.createQuery(sql).list();

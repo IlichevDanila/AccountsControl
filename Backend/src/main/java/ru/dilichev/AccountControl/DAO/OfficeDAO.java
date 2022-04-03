@@ -11,5 +11,7 @@ public interface OfficeDAO {
 
     void updateOffice(Office of);
 
+    String SQLByCondition(Long id, String phone, String address);
+
     List<Office> getOfficeByCondition(Long id, String phone, String address);
 }

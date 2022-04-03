@@ -11,6 +11,11 @@ public interface AccountDAO {
 
     void updateAccount(Account acc);
 
+    String SQLByCondition(String id, String status, String typeName, Long clientId,
+                                   String creating_time_low, String creating_time_high,
+                                   String response_account, String loan_account,
+                                   Double balance_low, Double balance_high);
+
     List<Account> getAccountByCondition(String id, String status, String typeName, Long clientId,
                                         String creating_time_low, String creating_time_high,
                                         String response_account, String loan_account,

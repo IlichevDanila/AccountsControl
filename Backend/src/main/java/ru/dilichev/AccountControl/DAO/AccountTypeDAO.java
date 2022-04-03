@@ -11,6 +11,12 @@ public interface AccountTypeDAO {
 
     void updateAccountType(AccountType accType);
 
+    String SQLByCondition(Long id, String name,
+                       Double profitability_percent_low, Double profitability_percent_high,
+                       Double profitability_fixed_low, Double profitability_fixed_high,
+                       Boolean debiting, Boolean accrual,
+                       String period, Boolean valid);
+
     List<AccountType> getAccountTypeByCondition(Long id, String name,
                                                 Double profitability_percent_low, Double profitability_percent_high,
                                                 Double profitability_fixed_low, Double profitability_fixed_high,

@@ -1,16 +1,26 @@
 package ru.dilichev.AccountControl.DAO.Impl;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import ru.dilichev.AccountControl.DAO.ClientDAO;
 import ru.dilichev.AccountControl.DAO.DAOFactory;
 import ru.dilichev.AccountControl.Models.Client;
 import ru.dilichev.AccountControl.Models.LegalClient;
 import ru.dilichev.AccountControl.Models.PhysicalClient;
-import ru.dilichev.AccountControl.util.HibernateUtil;
 
 import java.util.List;
 
 public class ClientDAOImpl implements ClientDAO {
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public void setSessionFactory(LocalSessionFactoryBean sessionFactoryBean)
+    {
+        sessionFactory = sessionFactoryBean.getObject();
+    }
+
     @Override
     public void deleteClient(Client sh) {
         if(sh.getType() == "Physical")
@@ -38,7 +48,7 @@ public class ClientDAOImpl implements ClientDAO {
             return;
         }
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.delete(sh);
         session.getTransaction().commit();
@@ -47,7 +57,7 @@ public class ClientDAOImpl implements ClientDAO {
 
     @Override
     public void updateClient(Client sh) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(sh);
         session.getTransaction().commit();
@@ -55,7 +65,7 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public List<Client> getClientByCondition(Long id, String type, String phone, String address) {
+    public String SQLByCondition(Long id, String type, String phone, String address) {
         String sql = "FROM Client";
         boolean add_and = false;
 
@@ -95,7 +105,14 @@ public class ClientDAOImpl implements ClientDAO {
             sql += " address = '" + address + "'";
         }
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        return sql;
+    }
+
+    @Override
+    public List<Client> getClientByCondition(Long id, String type, String phone, String address) {
+        String sql = SQLByCondition(id, type, phone, address);
+
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<Client> res = session.createQuery(sql).list();
         session.close();

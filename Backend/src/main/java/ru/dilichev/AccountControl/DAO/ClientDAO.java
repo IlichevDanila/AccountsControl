@@ -9,5 +9,7 @@ public interface ClientDAO {
 
     void updateClient(Client sh);
 
+    String SQLByCondition(Long id, String type, String phone, String address);
+
     List<Client> getClientByCondition(Long id, String type, String phone, String address);
 }

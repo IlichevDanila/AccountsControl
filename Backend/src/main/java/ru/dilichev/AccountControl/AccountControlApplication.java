@@ -9,7 +9,6 @@ import ru.dilichev.AccountControl.Models.LegalClient;
 import ru.dilichev.AccountControl.Models.Office;
 import ru.dilichev.AccountControl.Models.PhysicalClient;
 import ru.dilichev.AccountControl.Models.Transaction;
-import ru.dilichev.AccountControl.util.HibernateUtil;
 
 import java.util.List;
 
