@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import ru.dilichev.AccountControl.DAO.ClientDAO;
-import ru.dilichev.AccountControl.DAO.DAOFactory;
 import ru.dilichev.AccountControl.DAO.LegalClientDAO;
 import ru.dilichev.AccountControl.DAO.PhysicalClientDAO;
 import ru.dilichev.AccountControl.Models.Client;
