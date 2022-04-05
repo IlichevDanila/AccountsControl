@@ -4,19 +4,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Repository;
 import ru.dilichev.AccountControl.DAO.AccountDAO;
 import ru.dilichev.AccountControl.Models.Account;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
+@Repository
 public class AccountDAOImpl implements AccountDAO {
-
     private SessionFactory sessionFactory;
 
     @Autowired
     public void setSessionFactory(LocalSessionFactoryBean sessionFactoryBean)
     {
-        sessionFactory = sessionFactoryBean.getObject();
+        this.sessionFactory = sessionFactoryBean.getObject();
     }
 
     @Override
@@ -48,11 +52,12 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public String SQLByCondition(String id, String status, String typeName, Long clientId,
-                                 String creating_time_low, String creating_time_high,
+                                 Timestamp creating_time_low, Timestamp creating_time_high,
                                  String response_account, String loan_account,
                                  Double balance_low, Double balance_high) {
         String sql = "FROM Account";
         boolean add_and = false;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (typeName != null) {
             sql += " JOIN AccountType WHERE Account.type = AccountType.id";
             add_and = true;
@@ -123,7 +128,7 @@ public class AccountDAOImpl implements AccountDAO {
                 {
                     sql += " AND";
                 }
-                sql += " creating_time BETWEEN '" + creating_time_low + "' AND '" + creating_time_high + "'";
+                sql += " creating_time BETWEEN '" + df.format(creating_time_low) + "' AND '" + df.format(creating_time_high) + "'";
             }
             else
             {
@@ -131,7 +136,7 @@ public class AccountDAOImpl implements AccountDAO {
                 {
                     sql += " AND";
                 }
-                sql += " creating_time >= '" + creating_time_low + "'";
+                sql += " creating_time >= '" + df.format(creating_time_low) + "'";
             }
             add_and = true;
         }
@@ -141,7 +146,7 @@ public class AccountDAOImpl implements AccountDAO {
             {
                 sql += " AND";
             }
-            sql += " creating_time <= '" + creating_time_high + "'";
+            sql += " creating_time <= '" + df.format(creating_time_high) + "'";
             add_and = true;
         }
         if(balance_low != null)
@@ -179,7 +184,7 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public List<Account> getAccountByCondition(String id, String status, String typeName, Long clientId,
-                                               String creating_time_low, String creating_time_high,
+                                               Timestamp creating_time_low, Timestamp creating_time_high,
                                                String response_account, String loan_account,
                                                Double balance_low, Double balance_high) {
         String sql = SQLByCondition(id, status, typeName, clientId,

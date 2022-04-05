@@ -21,16 +21,16 @@ public class AccountType {
     @NonNull
     private String name;
 
-    @Column(nullable = false, name = "profitability_percent")
+    @Column(nullable = true, name = "profitability_percent")
     private Double profitability_percent;
 
-    @Column(nullable = false, name = "profitability_fixed")
+    @Column(nullable = true, name = "profitability_fixed")
     private Double profitability_fixed;
 
-    @Column(nullable = false, name = "debiting")
+    @Column(nullable = true, name = "debiting")
     private boolean debiting;
 
-    @Column(nullable = false, name = "accrual")
+    @Column(nullable = true, name = "accrual")
     private boolean accrual;
 
     @Column(nullable = false, name = "period")

@@ -4,18 +4,20 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Repository;
 import ru.dilichev.AccountControl.DAO.LegalClientDAO;
 import ru.dilichev.AccountControl.Models.LegalClient;
 
 import java.util.List;
 
+@Repository
 public class LegalClientDAOImpl implements LegalClientDAO {
     private SessionFactory sessionFactory;
 
     @Autowired
     public void setSessionFactory(LocalSessionFactoryBean sessionFactoryBean)
     {
-        sessionFactory = sessionFactoryBean.getObject();
+        this.sessionFactory = sessionFactoryBean.getObject();
     }
 
     @Override

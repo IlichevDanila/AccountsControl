@@ -3,6 +3,7 @@ package ru.dilichev.AccountControl.Models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Accounts")
@@ -37,11 +38,11 @@ public class Account {
 
     @Column(nullable = false, name = "creating_time")
     @NonNull
-    private String creating_time;
+    private Timestamp creating_time;
 
-    @Column(nullable = false, name = "response_account")
+    @Column(nullable = true, name = "response_account")
     private String response_account;
 
-    @Column(nullable = false, name = "loan_account")
+    @Column(nullable = true, name = "loan_account")
     private String loan_account;
 }

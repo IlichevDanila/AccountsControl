@@ -3,19 +3,23 @@ package ru.dilichev.AccountControl.DAO.Impl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Repository;
 import ru.dilichev.AccountControl.DAO.OfficeDAO;
 import ru.dilichev.AccountControl.Models.Office;
 
 import java.util.List;
 
+@Repository
 public class OfficeDAOImpl implements OfficeDAO {
     private SessionFactory sessionFactory;
 
     @Autowired
+    @Qualifier("sessionFactoryBean")
     public void setSessionFactory(LocalSessionFactoryBean sessionFactoryBean)
     {
-        sessionFactory = sessionFactoryBean.getObject();
+        this.sessionFactory = sessionFactoryBean.getObject();
     }
 
     @Override

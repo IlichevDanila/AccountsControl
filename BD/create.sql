@@ -2,7 +2,7 @@ CREATE TYPE client_type as ENUM ('physical', 'legal');
 
 CREATE TABLE Clients(
 	id SERIAL PRIMARY KEY,
-	type client_type NOT NULL,
+	type text NOT NULL CHECK(type != ''),
 	phone char(11) NOT NULL CHECK(phone SIMILAR TO '[123456789][0123456789]{10}'),
 	address text NOT NULL CHECK(address != '')
 );
@@ -50,9 +50,6 @@ $lclients_trigger$ LANGUAGE plpgsql;
 CREATE TRIGGER lclients_trigger BEFORE INSERT OR UPDATE ON Legal_clients
     FOR EACH ROW EXECUTE PROCEDURE lclients_trigger();
 
-
-CREATE TYPE profitability_period as ENUM ('Daily', 'Weekly', 'Monthly', 'Quarterly', 'Annually');
-
 CREATE TABLE Account_types(
 	id SERIAL PRIMARY KEY,
 	name text NOT NULL CHECK(name != ''),
@@ -61,17 +58,17 @@ CREATE TABLE Account_types(
 	CONSTRAINT profitability_check CHECK((profitability_percent IS NULL AND profitability_fixed IS NOT NULL) OR (profitability_percent IS NOT NULL AND profitability_fixed IS NULL)),
 	debiting boolean NOT NULL,
 	accrual boolean NOT NULL,
-	period profitability_period NOT NULL,
+	period text NOT NULL CHECK(period != ''),
 	valid boolean NOT NULL DEFAULT true
 );
 
-CREATE TYPE account_status as ENUM ('Opened', 'Closed', 'Frozen');
+--CREATE TYPE account_status as ENUM ('Opened', 'Closed', 'Frozen');
 
 CREATE TABLE Accounts(
 	id char(20) PRIMARY KEY CHECK(id SIMILAR TO '[0123456789]{20}'),
 	client_id serial REFERENCES Clients(id),
 	type serial REFERENCES Account_types(id),
-	status account_status NOT NULL,
+	status text NOT NULL CHECK(status != ''),
 	balance numeric(17, 2) NOT NULL,
 	creating_time timestamp NOT NULL,
 	response_account char(20) NULL CHECK(id SIMILAR TO '[0123456789]{20}'),

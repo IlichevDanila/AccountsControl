@@ -4,18 +4,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Repository;
 import ru.dilichev.AccountControl.DAO.TransactionDAO;
 import ru.dilichev.AccountControl.Models.Transaction;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
+@Repository
 public class TransactionDAOImpl implements TransactionDAO {
     private SessionFactory sessionFactory;
 
     @Autowired
     public void setSessionFactory(LocalSessionFactoryBean sessionFactoryBean)
     {
-        sessionFactory = sessionFactoryBean.getObject();
+        this.sessionFactory = sessionFactoryBean.getObject();
     }
 
     @Override
@@ -28,27 +33,10 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
     @Override
-    public void deleteTransaction(Transaction tran) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.delete(tran);
-        session.getTransaction().commit();
-        session.close();
-    }
-
-    @Override
-    public void updateTransaction(Transaction tran) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.update(tran);
-        session.getTransaction().commit();
-        session.close();
-    }
-
-    @Override
-    public String SQLByCondition(Long id, String debit_account_id, String credit_account_id, String tran_time_low, String tran_time_high, Double amount_low, Double amount_high) {
+    public String SQLByCondition(Long id, String debit_account_id, String credit_account_id, Timestamp tran_time_low, Timestamp tran_time_high, Double amount_low, Double amount_high) {
         String sql = "FROM Transaction";
         boolean add_and = false;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if(id != null || debit_account_id != null || credit_account_id != null || tran_time_low != null ||
                 tran_time_high != null || amount_low != null || amount_high != null)
         {
@@ -85,7 +73,7 @@ public class TransactionDAOImpl implements TransactionDAO {
                     {
                         sql += " AND";
                     }
-                    sql += " tran_time BETWEEN '" + tran_time_low + "' AND '" + tran_time_high + "'";
+                    sql += " tran_time BETWEEN '" + df.format(tran_time_low) + "' AND '" + df.format(tran_time_high) + "'";
                 }
                 else
                 {
@@ -93,7 +81,7 @@ public class TransactionDAOImpl implements TransactionDAO {
                     {
                         sql += " AND";
                     }
-                    sql += " tran_time >= '" + tran_time_low + "'";
+                    sql += " tran_time >= '" + df.format(tran_time_low) + "'";
                 }
                 add_and = true;
             }
@@ -103,7 +91,7 @@ public class TransactionDAOImpl implements TransactionDAO {
                 {
                     sql += " AND";
                 }
-                sql += " tran_time <= '" + tran_time_high + "'";
+                sql += " tran_time <= '" + df.format(tran_time_high) + "'";
                 add_and = true;
             }
 
@@ -143,7 +131,7 @@ public class TransactionDAOImpl implements TransactionDAO {
 
     @Override
     public List<Transaction> getTransactionByCondition(Long id, String debit_account_id, String credit_account_id,
-                                                       String tran_time_low, String tran_time_high,
+                                                       Timestamp tran_time_low, Timestamp tran_time_high,
                                                        Double amount_low, Double amount_high) {
         String sql = SQLByCondition(id, debit_account_id, credit_account_id,
                 tran_time_low, tran_time_high,

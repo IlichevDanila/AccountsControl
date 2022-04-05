@@ -10,7 +10,6 @@ DROP TABLE IF EXISTS Accounts;
 
 DROP TYPE IF EXISTS account_status; 
 DROP TABLE IF EXISTS Account_types;
-DROP TYPE IF EXISTS profitability_period;
 
 DROP TRIGGER IF EXISTS lclients_trigger ON Legal_clients;
 DROP TRIGGER IF EXISTS pclients_trigger ON Physical_clients;

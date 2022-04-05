@@ -20,7 +20,7 @@ public class PhysicalClient implements Serializable {
     @NonNull
     private Client client;
 
-    @Column(nullable = false, name = "fullname")
+    @Column(nullable = false, name = "full_name")
     @NonNull
     private String fullName;
 

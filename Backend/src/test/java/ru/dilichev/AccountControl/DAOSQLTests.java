@@ -4,12 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.dilichev.AccountControl.DAO.*;
 
+import java.sql.Timestamp;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class DAOTests {
+public class DAOSQLTests {
     @Test
     void OfficeDAOTest()
     {
@@ -47,23 +48,27 @@ public class DAOTests {
                 subj.SQLByCondition(1L, null, null,
                         null, null, null, null).toLowerCase(Locale.ROOT));
 
-        assertEquals("FROM Transaction WHERE id = 1 AND tran_time >= '2022-02-30 10:35:42'".toLowerCase(Locale.ROOT),
+        assertEquals("FROM Transaction WHERE id = 1 AND tran_time >= '2022-02-28 10:35:00'".toLowerCase(Locale.ROOT),
                 subj.SQLByCondition(1L, null, null,
-                        "2022-02-30 10:35:42", null, null, null).toLowerCase(Locale.ROOT));
+                        Timestamp.valueOf("2022-02-28 10:35:00"),
+                        null, null, null).toLowerCase(Locale.ROOT));
 
-        assertEquals("FROM Transaction WHERE tran_time BETWEEN '2022-02-30 10:35:00' AND '2022-02-30 10:50:00'".toLowerCase(Locale.ROOT),
+        assertEquals("FROM Transaction WHERE tran_time BETWEEN '2022-02-28 10:35:00' AND '2022-02-28 10:50:00'".toLowerCase(Locale.ROOT),
                 subj.SQLByCondition(null, null, null,
-                        "2022-02-30 10:35:00", "2022-02-30 10:50:00",
+                        Timestamp.valueOf("2022-02-28 10:35:00"),
+                        Timestamp.valueOf("2022-02-28 10:50:00"),
                         null, null).toLowerCase(Locale.ROOT));
 
-        assertEquals("FROM Transaction WHERE tran_time BETWEEN '2022-02-30 10:35:00' AND '2022-02-30 10:50:00' AND amount <= 35000.0".toLowerCase(Locale.ROOT),
+        assertEquals("FROM Transaction WHERE tran_time BETWEEN '2022-02-28 10:35:00' AND '2022-02-28 10:50:00' AND amount <= 35000.0".toLowerCase(Locale.ROOT),
                 subj.SQLByCondition(null, null, null,
-                        "2022-02-30 10:35:00", "2022-02-30 10:50:00",
+                        Timestamp.valueOf("2022-02-28 10:35:00"),
+                        Timestamp.valueOf("2022-02-28 10:50:00"),
                         null, 35000.0).toLowerCase(Locale.ROOT));
 
-        assertEquals("FROM Transaction WHERE id = 1 AND tran_time BETWEEN '2022-02-30 10:35:00' AND '2022-02-30 10:50:00' AND amount BETWEEN 25000.0 AND 35000.0".toLowerCase(Locale.ROOT),
+        assertEquals("FROM Transaction WHERE id = 1 AND tran_time BETWEEN '2022-02-28 10:35:00' AND '2022-02-28 10:50:00' AND amount BETWEEN 25000.0 AND 35000.0".toLowerCase(Locale.ROOT),
                 subj.SQLByCondition(1L, null, null,
-                        "2022-02-30 10:35:00", "2022-02-30 10:50:00",
+                        Timestamp.valueOf("2022-02-28 10:35:00"),
+                        Timestamp.valueOf("2022-02-28 10:50:00"),
                         25000.0, 35000.0).toLowerCase(Locale.ROOT));
 
         assertEquals(("FROM Transaction WHERE debit_account_id = '49123456789012345678' " +
@@ -175,14 +180,18 @@ public class DAOTests {
                         "response_account = '12345678901234567890' AND " +
                         "creating_time BETWEEN '2020-10-30 10:00:00' AND '2020-11-30 10:00:00'").toLowerCase(Locale.ROOT),
                 subj.SQLByCondition(null, "Frozen",  null, null,
-                        "2020-10-30 10:00:00", "2020-11-30 10:00:00", "12345678901234567890",
+                        Timestamp.valueOf("2020-10-30 10:00:00"),
+                        Timestamp.valueOf("2020-11-30 10:00:00"),
+                        "12345678901234567890",
                         null, null, null).toLowerCase(Locale.ROOT));
 
         assertEquals(("FROM Account JOIN AccountType WHERE Account.type = AccountType.id AND status = 'Frozen' AND AccountType.name = 'Smth' AND " +
                         "response_account = '12345678901234567890' AND " +
                         "creating_time BETWEEN '2020-10-30 10:00:00' AND '2020-11-30 10:00:00'").toLowerCase(Locale.ROOT),
                 subj.SQLByCondition(null, "Frozen",  "Smth", null,
-                        "2020-10-30 10:00:00", "2020-11-30 10:00:00", "12345678901234567890",
+                        Timestamp.valueOf("2020-10-30 10:00:00"),
+                        Timestamp.valueOf("2020-11-30 10:00:00"),
+                        "12345678901234567890",
                         null, null, null).toLowerCase(Locale.ROOT));
     }
 }
