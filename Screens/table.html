@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles/main_style.css">
+	<link rel="stylesheet" href="styles/table_style.css">
+	<title>Accounts control</title>
+	</head>
+	<body>
+		<div id="LeftPanel">
+			<div id="LeftPanelButtons">
+				<img class="Button" id="SearchButton" src="Icons/SearchIcon.png">
+				<img class="Button" id="EditButton" src="Icons/EditIcon.png">
+			</div>
+			<div id="EntityPanel">
+				<ul id="EntityList">
+					<li class="Entity">Первый</li>
+					<li class="Entity">Второй</li>
+					<li class="Entity">Третий</li>
+					<li class="Entity">Четвертый</li>
+				</ul>
+			</div>
+		</div>
+		<div id="RightPanel">
+			<div id="RightPanelHeader">
+				<img class="Button" id="ChangeViewButton" src="Icons/ChangeViewIcon.png">
+				<img class="Button" id="CancelButton" src="Icons/CancelIcon.png">
+				<div id="SearchItemsCount">Найдено 2 объекта(ов)</div>
+			</div>
+			<div id="ContentPanel">
+				<div id="SearchResult" style="grid-template: repeat(3, auto) / repeat(4, auto);">
+					<div class="Attribute" id="Attribute1">ФИО</div>
+					<div class="Attribute" id="Attribute2">Данные паспорта</div>
+					<div class="Attribute" id="Attribute3">Адрес</div>
+					<div class="Attribute" id="Attribute4">Телефон</div>
+
+					<div class="Cell" class="RowAttr"  data-row="1" id="Row1Attribute1">Ульянский Павел Сергеевич</div>
+					<div class="Cell" class="RowAttr" data-row="1" id="Row1Attribute2">4515 214836</div>
+					<div class="Cell" class="RowAttr" data-row="1" id="Row1Attribute3">Украина, г. Киев, ул. Степана Бандеры. д.14, кв. 88</div>
+					<div class="Cell" class="RowAttr" data-row="1" id="Row1Attribute4">+79994201488</div>
+
+					<div class="Cell" class="RowAttr" data-row="2" id="Row2Attribute1">Мальцман Изя Моишевич</div>
+					<div class="Cell" class="RowAttr" data-row="2" id="Row2Attribute2">4500 507888</div>
+					<div class="Cell" class="RowAttr" data-row="2" id="Row2Attribute3">Россия, г. Москва, ул. Пушкина, д. Колотушкина</div>
+					<div class="Cell" class="RowAttr" data-row="2" id="Row2Attribute4">+89154448365</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="JS/jquery.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/table.js"></script>

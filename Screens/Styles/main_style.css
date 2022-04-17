@@ -1,0 +1,140 @@
+/*
+	#0dbff2
+	#c7f0fc
+*/
+
+body {
+	background-color: #0dbff2;
+	z-index: 0;
+	user-select: none;
+}
+
+/*Left panel*/
+
+#LeftPanel {
+	position: absolute;
+
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 80%;
+}
+
+#EntityPanel {
+	background-color: #c7f0fc;
+
+	top: 50px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+
+	z-index: 1;
+	margin: 15px;
+	padding: 15px;
+	margin-right: 5px;
+	border-radius: 10px;
+	position: absolute;
+}
+
+#EntityList {
+	background-color: #c7f0fc;
+	padding: 5px;
+	margin-left: 10px;
+	list-style-type: square;
+}
+
+.Entity {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 24px;
+	user-select: none;
+	border-radius: 7px;
+	padding: 5px;
+	transition: padding 0.1s linear 0s;
+	transition: background 0.1s linear 0s;
+}
+
+.Entity:hover {
+	border: 1px solid #909090;
+}
+
+.EntityPressed {
+	background-color: #ffff99;
+	padding-left: 10px;
+}
+
+#LeftPanelButtons {
+	margin: 15px;
+	position: absolute;
+}
+
+#SearchButton {
+	margin-right: 7px;
+	position: static;
+}
+
+#EditButton {
+	margin-left: 7px;
+	margin-right: 7px;
+	position: static;
+}
+
+/*Right panel*/
+
+
+#RightPanel {
+	position: absolute;
+
+	top: 0px;
+	bottom: 0px;
+	left: 20%;
+	right: 0px;
+
+	/*padding: 10px;*/
+}
+
+#ContentPanel {
+	background-color: #c7f0fc;
+
+	top: 50px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+
+	z-index: 1;
+	margin: 15px;
+	margin-left: 5px;
+	padding: 15px;
+	border-radius: 10px;
+	position: absolute;
+}
+
+#RightPanelHeader {
+	margin: 15px;
+	position: absolute;
+	width: 100%;
+	position: absolute;
+}
+
+#ChangeViewButton {
+	margin-right: 7px;
+	position: static;
+}
+
+#CancelButton {
+	margin-left: 7px;
+	margin-right: 7px;
+	position: static;
+}
+
+/*General*/
+
+.Button {
+	height: 30px;
+	width: 30px;
+}
+
+.Button:active {
+	transform: translate(2px, 2px);
+	user-drag: none;
+}

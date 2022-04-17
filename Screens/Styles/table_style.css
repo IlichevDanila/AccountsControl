@@ -1,0 +1,40 @@
+#SearchResult {
+	border: solid 2px grey;
+	border-radius: 10px;
+	display: grid;
+	grid-gap: 2px;
+	background-color: grey;
+	overflow: hidden;
+	overflow: auto;
+	position: relative;
+	max-height: 100%;
+}
+
+.Cell {
+	background-color: #ffffff;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	padding: 8px;
+	transition: 0.2s;
+	user-select: text;
+}
+
+.Attribute {
+	background-color: #eeeeee;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	padding: 8px;
+	font-weight: bold;
+}
+
+.SelectedRow {
+	background-color: #ffff99;
+}
+
+#SearchItemsCount {
+	position: absolute;
+	right: 50px;
+	bottom: 0px;
+}
