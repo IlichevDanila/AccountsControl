@@ -1,0 +1,81 @@
+#ClientForm {
+	/*-display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto;*/
+	grid-gap: 100px;
+	max-width: 100%;
+	width: fit-content;
+}
+
+#FormLabels {
+	display: grid;
+	grid-template-columns: auto;
+	margin-right: 70px;
+}
+
+#FormLabels > span {
+	font-size: 24px;
+	margin: 13px;
+	height: 28px;
+}
+
+#FormInputs {
+	position: relative;
+	display: grid;
+	grid-template-columns: auto;
+	padding: 5px;
+	margin-right: 100px;
+	max-width: 100%;
+}
+
+#FormInputs input[type="text"] {
+	position: relative;
+	font-size: 23px;
+	margin: 10px;
+	max-width: 100%;
+	height: 28px;
+	top: -12px;
+}
+
+#FormInputs input[type="datetime-local"] {
+	position: relative;
+	font-size: 23px;
+	margin: 10px;
+	max-width: 100%;
+	height: 28px;
+	top: -12px;
+}
+
+#FormInputs span {
+	position: relative;
+	font-size: 23px;
+	margin: 10px;
+	margin-right: 0px;
+	max-width: 100%;
+	height: 28px;
+	top: -12px;
+}
+
+#FormInputs input[type="checkbox"] {
+	position: relative;
+	font-size: 23px;
+	margin: 13px;
+	max-width: 100%;
+	height: 28px;
+	width: 28px;
+	top: -12px;
+}
+
+#FormInputs > select {
+	position: relative;
+	font-size: 24px;
+	top: -11px;
+	margin: 10px;
+	max-width: 100%;
+	background-color: #ffffff;
+	border: solid 1px grey;
+}
+
+.Hidden {
+	display: none;
+}

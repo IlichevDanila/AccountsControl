@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="Styles/main_style.css">
+	<link rel="stylesheet" href="Styles/table_style.css">
+	<title>Accounts control</title>
+	</head>
+	<body>
+		<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
+		<div id="RightPanel">
+			<div id="RightPanelHeader" th:replace="~{main::rightPanelHeader}"></div>
+			<div id="ContentPanel">
+				<div id="SearchResult" style="grid-template: repeat(3, auto) / repeat(4, auto);">
+					<div class="Attribute">ФИО</div>
+					<div class="Attribute">Данные паспорта</div>
+					<div class="Attribute">Адрес</div>
+					<div class="Attribute">Телефон</div>
+
+					<div class="Cell" class="RowAttr"  data-row="1">Ульянский Павел Сергеевич</div>
+					<div class="Cell" class="RowAttr" data-row="1">4515 214836</div>
+					<div class="Cell" class="RowAttr" data-row="1">Россия, г. Москва, ул. Карла-Маркса. д.14, кв. 15</div>
+					<div class="Cell" class="RowAttr" data-row="1">+79994201488</div>
+
+					<div class="Cell" class="RowAttr" data-row="2">Мальцман Степан Данилович</div>
+					<div class="Cell" class="RowAttr" data-row="2">4500 507888</div>
+					<div class="Cell" class="RowAttr" data-row="2">Россия, г. Москва, ул. Пушкина, д. Колотушкина</div>
+					<div class="Cell" class="RowAttr" data-row="2">+89154448365</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/table.js"></script>

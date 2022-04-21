@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles/main_style.css">
+	<link rel="stylesheet" href="styles/dialog_style.css">
+	<title>Accounts control</title>
+	</head>
+	<body>
+		<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
+		<div id="RightPanel">
+			<div id="RightPanelHeader" th:replace="~{main::rightPanelHeader}"></div>
+			<div id="ContentPanel">
+				<form id="ClientForm">
+					<div id="FormLabels" style="grid-template-rows: repeat(7, auto); width:400px">
+						<span id="ID_label">ID вида</span>
+						<span id="Name_label">Название</span>
+						<span id="Profitability_label">Доходность</span>
+						<span id="Debiting_label">Возможность списания</span>
+						<span id="Accrual_label">Возможность пополнения</span>
+						<span id="Period_label">Периодичность доходности</span>
+						<span id="Valid_label">Доступен для использования</span>
+					</div>
+					<div id="FormInputs" style="grid-template-rows: repeat(7, auto); top:-370px;left:500px;">
+						<input type="text" size="20" id="ID_input" disabled>
+						<input type="text" size="40" id="Name_input">
+						<div id="Profit_block">
+							<input type="text" size="20" id="Profitability" disabled>
+							<span id="PPercent_label">в процентах</span>
+							<input type="checkbox" id="Percent_input" disabled>
+						</div>
+						<input type="checkbox" id="Debiting_input" disabled>
+						<input type="checkbox" id="Accrual_input" disabled>
+						<select id="Period_input" disabled>
+							<option value="Daily">Ежедневно</option>
+							<option value="Weekly">Еженедельно</option>
+							<option value="Monthly">Ежемесячно</option>
+							<option value="Quarterly">Ежеквартально</option>
+							<option value="Annualy">Ежегодно</option>
+						</select>
+						<input type="checkbox" id="Valid_input">
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/dialog.js"></script>

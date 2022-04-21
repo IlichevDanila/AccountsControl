@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles/main_style.css">
+	<link rel="stylesheet" href="styles/dialog_style.css">
+	<title>Accounts control</title>
+	</head>
+	<body>
+		<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
+		<div id="RightPanel">
+			<div id="RightPanelHeader" th:replace="~{main::rightPanelHeader}"></div>
+			<div id="ContentPanel">
+				<form id="ClientForm">
+					<div id="FormLabels" style="grid-template-rows: repeat(3, auto); width:300px">
+						<span id="TIN_label">Номер отделения</span>
+						<span id="Address_label">Адрес</span>
+						<span id="Phone_label">Телефон</span>
+					</div>
+					<div id="FormInputs" style="grid-template-rows: repeat(3, auto); top: -154px; left: 500px;">
+						<input type="text" size="12" id="ID_input">
+						<input type="text" size="40" id="Address_input">
+						<input type="text" size="12" id="Phone_input">
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/dialog.js"></script>

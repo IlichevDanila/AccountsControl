@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles/main_style.css">
+	<title>Accounts control</title>
+	</head>
+	<body>
+		<div id="LeftPanel" th:fragment="leftPanel">
+			<div id="LeftPanelButtons">
+				<img class="Button" id="SearchButton" th:src="@{Icons/SearchIcon.png}">
+				<img class="Button" id="EditButton" th:src="@{Icons/EditIcon.png}">
+			</div>
+			<div id="EntityPanel">
+				<ul id="EntityList">
+					<li data-entityid="Clients" class="Entity">Клиенты</li>
+					<li data-entityid="Offices" class="Entity">Отделения</li>
+					<li data-entityid="Accounts" class="Entity">Счета клиентов</li>
+					<li data-entityid="AccountTypes" class="Entity">Виды счетов</li>
+					<li data-entityid="Transactions" class="Entity">Проводки</li>
+				</ul>
+			</div>
+		</div>
+		<div id="RightPanel">
+			<div id="RightPanelHeader" th:fragment="rightPanelHeader">
+				<img class="Button" id="ChangeViewButton" th:src="@{Icons/ChangeViewIcon.png}">
+				<img class="Button" id="CancelButton" th:src="@{Icons/CancelIcon.png}">
+			</div>
+			<div id="ContentPanel">
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>

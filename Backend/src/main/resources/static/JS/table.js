@@ -1,4 +1,4 @@
-$(".Cell").click(function(e)
+$(document).on('click', ".Cell", function(e)
 {
     if($(this).hasClass("SelectedRow"))
     {

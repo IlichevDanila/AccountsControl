@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles/main_style.css">
+	<link rel="stylesheet" href="styles/dialog_style.css">
+	<title>Accounts control</title>
+	</head>
+	<body>
+		<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
+		<div id="RightPanel">
+			<div id="RightPanelHeader" th:replace="~{main::rightPanelHeader}"></div>
+			<div id="ContentPanel">
+				<form id="ClientForm">
+					<div id="FormLabels" style="grid-template-rows: repeat(8, auto); width:400px">
+						<span id="ID_label">Номер счета</span>
+						<span id="Status_label">Статус</span>
+						<span id="Date_label">Дата открытия</span>
+						<span id="AccountType_label">Вид счета</span>
+						<span id="Response_label">Ответный счет</span>
+						<span id="Loan_label">Ссудный счет</span>
+						<span id="Client_label">ID держателя</span>
+						<span id="Balance_label">Баланс</span>
+					</div>
+					<div id="FormInputs" style="grid-template-rows: repeat(8, auto); top:-424px;left:500px;">
+						<input type="text" size="20" id="ID_input">
+						<select id="Status_input">
+							<option value="Opened">Открыт</option>
+							<option value="Closed">Закрыт</option>
+							<option value="Frozen">Заморожен</option>
+						</select>
+						<div id="Date_block">
+							<span id="DateLow_label">от</span>
+							<input type="datetime-local" size="20" id="Date_low_input">
+							<span id="DateLow_label">до</span>
+							<input type="datetime-local" size="20" id="Date_high_input">
+						</div>
+						<select id="AccountType_input">
+							<option value="Type1">Тип 1</option>
+							<option value="Type2">Тип 2</option>
+							<option value="Type3">Тип 3</option>
+						</select>
+						<input type="text" size="20" id="Response_input">
+						<input type="text" size="20" id="Loan_input">
+						<input type="text" size="20" id="Client_input">
+						<div id="Balance_block">
+							<span id="BalanceLow_label">от</span>
+							<input type="text" size="20" id="Balance_low_input">
+							<span id="BalanceLow_label">до</span>
+							<input type="text" size="20" id="Balance_high_input">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/dialog.js"></script>

@@ -1,4 +1,4 @@
-$("#ClientType_select").on('change',
+$(document).on('click', "#ClientType_select",
 function()
 {
 	console.log($("#ClientType_select")[0].value);
@@ -25,5 +25,32 @@ function()
 		$("#OrgName_label").addClass("Hidden");
 		$("#OrgForm_input").addClass("Hidden");
 		$("#OrgName_input").addClass("Hidden");
+	}
+})
+
+$(document).on('click', "#AccountSearch_input",
+function()
+{
+	if($(this).prop("checked"))
+	{
+		$("#Account_input").prop("disabled", false);
+
+		$("#Debit_input").prop("disabled", true);
+		$("#Credit_input").prop("disabled", true);
+		$("#Time_low_input").prop("disabled", true);
+		$("#Time_high_input").prop("disabled", true);
+		$("#Sum_low_input").prop("disabled", true);
+		$("#Sum_high_input").prop("disabled", true);
+	}
+	else
+	{
+		$("#Account_input").prop("disabled", true);
+
+		$("#Debit_input").prop("disabled", false);
+		$("#Credit_input").prop("disabled", false);
+		$("#Time_low_input").prop("disabled", false);
+		$("#Time_high_input").prop("disabled", false);
+		$("#Sum_low_input").prop("disabled", false);
+		$("#Sum_high_input").prop("disabled", false);
 	}
 })
