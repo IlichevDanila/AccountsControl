@@ -1,7 +1,6 @@
 $(document).on('click', "#ClientType_select",
 function()
 {
-	console.log($("#ClientType_select")[0].value);
 	if($("#ClientType_select")[0].value == "Legal")
 	{
 		$("#FIO_label").addClass("Hidden");

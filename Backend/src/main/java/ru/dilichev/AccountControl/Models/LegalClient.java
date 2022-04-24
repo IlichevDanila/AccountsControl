@@ -14,7 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class LegalClient implements Serializable {
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id")
     @ToString.Exclude
     @NonNull

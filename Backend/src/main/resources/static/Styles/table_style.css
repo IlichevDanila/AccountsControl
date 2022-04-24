@@ -1,18 +1,17 @@
 #SearchResult {
-	border: solid 2px grey;
+	border: solid 1px grey;
 	border-radius: 10px;
-	display: grid;
-	grid-gap: 2px;
-	background-color: grey;
 	overflow: hidden;
 	overflow: auto;
+	display: inline-block;
 	position: relative;
 	max-height: 100%;
+	background-color: grey;
 }
 
 .Cell {
 	background-color: #ffffff;
-	display: grid;
+	/*display: grid;*/
 	justify-content: center;
 	align-content: center;
 	padding: 8px;
@@ -21,8 +20,10 @@
 }
 
 .Attribute {
+	position: sticky;
+	top: 0px;
 	background-color: #eeeeee;
-	display: grid;
+	/*display: grid;*/
 	justify-content: center;
 	align-content: center;
 	padding: 8px;
