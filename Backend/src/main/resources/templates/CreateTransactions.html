@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/main_style.css">
+    <link rel="stylesheet" href="styles/dialog_style.css">
+    <title>Accounts control</title>
+</head>
+<body>
+<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
+<div id="RightPanel">
+    <div id="RightPanelHeader" th:replace="~{main::rightPanelHeader(hasOKButton='X')}"></div>
+    <div id="ContentPanel">
+        <form id="ClientForm">
+            <div id="FormLabels" style="grid-template-rows: repeat(5, auto); width:400px">
+                <span id="ID_label">ID проводки</span>
+                <span id="Debiting_label">Дебетовый счет</span>
+                <span id="Accrual_label">Кредитовый счет</span>
+                <span id="Period_label">Время</span>
+                <span id="Valid_label">Сумма проводки</span>
+            </div>
+            <div id="FormInputs" style="grid-template-rows: repeat(5, auto); top:-263px;left:500px;">
+                <input type="text" size="20" id="ID_input">
+                <input type="text" size="20" id="Debit_input">
+                <input type="text" size="20" id="Credit_input">
+                <input type="datetime-local" size="20">
+                <input type="text" size="20" id="Sum_input">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/createRequest.js"></script>
+<script src="JS/dialog.js"></script>
+<script src="JS/transactions.js"></script>

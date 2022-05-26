@@ -53,7 +53,7 @@ function()
     window.location.href = "http://localhost:8080/ClientsSearch?" + params;
 })
 
-$(document).on('click', '#CreateButton',
+$(document).on('click', '#OKButton',
 function()
 {
     var tin = $('#TIN_input').val();

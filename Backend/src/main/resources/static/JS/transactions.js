@@ -57,7 +57,7 @@ function()
     window.location.href = "http://localhost:8080/TransactionsSearch?" + params;
 })
 
-$(document).on('click', '#CreateButton',
+$(document).on('click', '#OKButton',
 function()
 {
     var id = $("#ID_input").val();

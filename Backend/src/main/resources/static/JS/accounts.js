@@ -55,7 +55,7 @@ function()
     window.location.href = "http://localhost:8080/AccountsSearch?" + params;
 })
 
-$(document).on('click', '#SaveButton',
+$(document).on('click', '#OKButton',
 function()
 {
     var accId = $("#ID_input").val();
