@@ -22,7 +22,8 @@
 			</div>
 		</div>
 		<div id="RightPanel">
-			<div id="RightPanelHeader" th:fragment="rightPanelHeader">
+			<div id="RightPanelHeader" th:fragment="rightPanelHeader(hasOKButton)">
+				<img class="Button" id="EditViewButton" th:src="@{Icons/OKIcon.png}" th:style="${hasOKButton=='X'}?'':'display:none'">
 				<img class="Button" id="ChangeViewButton" th:src="@{Icons/ChangeViewIcon.png}">
 				<img class="Button" id="CancelButton" th:src="@{Icons/CancelIcon.png}">
 			</div>
@@ -34,3 +35,4 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
+<script src="JS/editRequest.js"></script>

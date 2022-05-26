@@ -116,22 +116,14 @@ body {
 	position: absolute;
 }
 
-#ChangeViewButton {
-	margin-right: 7px;
-	position: static;
-}
-
-#CancelButton {
-	margin-left: 7px;
-	margin-right: 7px;
-	position: static;
-}
-
 /*General*/
 
 .Button {
 	height: 30px;
 	width: 30px;
+	margin-left: 7px;
+    margin-right: 7px;
+    position: static;
 }
 
 .Button:active {

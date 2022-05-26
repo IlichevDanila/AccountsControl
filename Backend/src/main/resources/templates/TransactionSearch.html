@@ -9,7 +9,7 @@
 	<body>
 		<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
 		<div id="RightPanel">
-			<div id="RightPanelHeader" th:replace="~{main::rightPanelHeader}"></div>
+			<div id="RightPanelHeader" th:replace="~{main::rightPanelHeader(hasOKButton='-')}"></div>
 			<div id="ContentPanel">
 				<form id="ClientForm">
 					<div id="FormLabels" style="grid-template-rows: repeat(7, auto); width:400px">
@@ -48,5 +48,6 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
+<script src="JS/editRequest.js"></script>
 <script src="JS/dialog.js"></script>
 <script src="JS/transactions.js"></script>
