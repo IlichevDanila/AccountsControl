@@ -18,9 +18,9 @@
                 <span id="Phone_label">Телефон</span>
             </div>
             <div id="FormInputs" style="grid-template-rows: repeat(3, auto); top: -154px; left: 500px;">
-                <input type="text" size="12" id="ID_input">
-                <input type="text" size="40" id="Address_input">
-                <input type="text" size="12" id="Phone_input">
+                <input type="text" size="12" id="ID_input" th:value="${obj.id}">
+                <input type="text" size="40" id="Address_input" th:value="${obj.address}">
+                <input type="text" size="12" id="Phone_input" th:value="${obj.phone}">
             </div>
         </form>
     </div>
@@ -30,6 +30,6 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
-<script src="JS/editRequest.js"></script>
+<script src="JS/createRequest.js"></script>
 <script src="JS/dialog.js"></script>
 <script src="JS/offices.js"></script>

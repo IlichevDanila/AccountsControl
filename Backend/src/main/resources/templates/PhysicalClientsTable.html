@@ -22,12 +22,12 @@
 			</tr>
 			
 			<tr th:each="row,iterStat: ${rows}">
-				<td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.client.id}"></td>
-				<td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.fullName}"></td>
-				<td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.passport}"></td>
-				<td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.client.address}"></td>
-				<td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.client.phone}"></td>
-				<td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.tin}"></td>
+				<td class="Cell RowAttr"  th:attr="data-row=${row.client.id}" th:text="${row.client.id}"></td>
+				<td class="Cell RowAttr"  th:attr="data-row=${row.client.id}" th:text="${row.fullName}"></td>
+				<td class="Cell RowAttr"  th:attr="data-row=${row.client.id}" th:text="${row.passport}"></td>
+				<td class="Cell RowAttr"  th:attr="data-row=${row.client.id}" th:text="${row.client.address}"></td>
+				<td class="Cell RowAttr"  th:attr="data-row=${row.client.id}" th:text="${row.client.phone}"></td>
+				<td class="Cell RowAttr"  th:attr="data-row=${row.client.id}" th:text="${row.tin}"></td>
 			</tr>
 		</div>
 	</div>
@@ -37,5 +37,6 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
-<script src="JS/editRequest.js"></script>
+<script src="JS/createRequest.js"></script>
 <script src="JS/table.js"></script>
+<script src="JS/clientTable.js"></script>

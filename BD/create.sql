@@ -26,7 +26,7 @@ CREATE FUNCTION pclients_trigger() RETURNS trigger AS $pclients_trigger$
     BEGIN
         -- Проверить, что указаны имя сотрудника и зарплата
         IF NEW.id IN (SELECT id FROM Legal_clients) THEN
-            RAISE EXCEPTION 'Physical client is in the legal clients list';
+            RAISE EXCEPTION 'Physical client % is in the legal clients list', NEW.id;
         END IF;
         
         RETURN NEW;
@@ -40,7 +40,7 @@ CREATE FUNCTION lclients_trigger() RETURNS trigger AS $lclients_trigger$
     BEGIN
         -- Проверить, что указаны имя сотрудника и зарплата
         IF NEW.id IN (SELECT id FROM Physical_clients) THEN
-            RAISE EXCEPTION 'Legal client is in the physical clients list';
+            RAISE EXCEPTION 'Legal client % is in the physical clients list', NEW.id;
         END IF;
         
         RETURN NEW;

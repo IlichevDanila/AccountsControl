@@ -19,9 +19,9 @@
       </tr>
 
       <tr th:each="row,iterStat: ${rows}">
-        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.id}"></td>
-        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.address}"></td>
-        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.phone}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.id}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.address}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.phone}"></td>
       </tr>
   </div>
 </div>
@@ -31,5 +31,6 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
-<script src="JS/editRequest.js"></script>
+<script src="JS/createRequest.js"></script>
 <script src="JS/table.js"></script>
+<script src="JS/officeTable.js"></script>

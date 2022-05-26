@@ -23,22 +23,20 @@
 						<span id="Balance_label">Баланс</span>
 					</div>
 					<div id="FormInputs" style="grid-template-rows: repeat(8, auto); top:-424px;left:500px;">
-						<input type="text" size="20" id="ID_input" disabled>
-						<select id="Status_input">
+						<input type="text" size="20" id="ID_input" disabled th:value="${obj.id}">
+						<select id="Status_input" th:value="${obj.status}">
 							<option value="Opened">Открыт</option>
 							<option value="Closed">Закрыт</option>
 							<option value="Frozen">Заморожен</option>
 						</select>
-						<input type="datetime-local" size="20" id="Date_input" disabled>
-						<select id="AccountType_input" disabled>
-							<option value="Type1">Тип 1</option>
-							<option value="Type2">Тип 2</option>
-							<option value="Type3">Тип 3</option>
+						<input type="datetime-local" size="20" id="Date_input" disabled  th:value="${obj.creating_time}">
+						<select id="AccountType_input" disabled th:value="${obj.type.name}" th:text="${obj.type.name}">
+							<option th:each="accType,iterStat: ${accTypes}" th:value="${accType.name}" th:text="${accType.name}"></option>
 						</select>
-						<input type="text" size="20" id="Response_input">
-						<input type="text" size="20" id="Loan_input">
-						<input type="text" size="20" id="Client_input" disabled>
-						<input type="text" size="20" id="Balance_input" disabled>
+						<input type="text" size="20" id="Response_input" th:value="${obj.response_account}">
+						<input type="text" size="20" id="Loan_input" th:value="${obj.loan_account}">
+						<input type="text" size="20" id="Client_input" disabled th:value="${obj.client.id}">
+						<input type="text" size="20" id="Balance_input" disabled th:value="${obj.balance}">
 					</div>
 				</form>
 			</div>
@@ -48,5 +46,6 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
-<script src="JS/editRequest.js"></script>
+<script src="JS/createRequest.js"></script>
 <script src="JS/dialog.js"></script>
+<script src="JS/accounts.js"></script>

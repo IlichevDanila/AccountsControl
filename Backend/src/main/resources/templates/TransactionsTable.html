@@ -21,11 +21,11 @@
       </tr>
 
       <tr th:each="row,iterStat: ${rows}">
-        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.id}"></td>
-        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.debit_account_id}"></td>
-        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.credit_account_id}"></td>
-        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.tran_time}"></td>
-        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.amount}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.id}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.debit_account_id}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.credit_account_id}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.tran_time}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.amount}"></td>
       </tr>
   </div>
 </div>
@@ -35,5 +35,6 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
-<script src="JS/editRequest.js"></script>
+<script src="JS/createRequest.js"></script>
 <script src="JS/table.js"></script>
+<script src="JS/transactionTable.js"></script>

@@ -24,14 +24,14 @@
             </tr>
 
             <tr th:each="row,iterStat: ${rows}">
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.id}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.status}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.creating_time}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.type.name}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.response_account}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.loan_account}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.client.id}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.balance}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.id}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.status}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.creating_time}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.type.name}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.response_account}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.loan_account}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.client.id}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.balance}"></td>
             </tr>
     </div>
 </div>
@@ -41,5 +41,6 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
-<script src="JS/editRequest.js"></script>
+<script src="JS/createRequest.js"></script>
 <script src="JS/table.js"></script>
+<script src="JS/accountTable.js"></script>

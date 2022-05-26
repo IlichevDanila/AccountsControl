@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Styles/main_style.css">
+    <link rel="stylesheet" href="Styles/dialog_style.css">
+    <title>Aссounts control</title>
+</head>
+<body>
+<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
+<div id="RightPanel">
+    <div id="RightPanelHeader" th:replace="~{main::rightPanelHeader(hasOKButton='X')}"></div>
+    <div id="ContentPanel">
+        <form id="ClientForm">
+            <div id="FormLabels" style="grid-template-rows: repeat(6, auto); width:300px">
+                <span id="TIN_label">ИНН</span>
+                <span id="Phone_label">Телефон</span>
+                <span id="Address_label">Адрес</span>
+                <span id="ClientType_label">Тип клиента</span>
+                <span id="FIO_label" th:class="${obj.client.type=='physical'}? '' : 'Hidden'">ФИО</span>
+                <span id="Passport_label" th:class="${obj.client.type=='physical'}? '' : 'Hidden'">Данные паспорта</span>
+                <span id="OrgForm_label" th:class="${obj.client.type=='legal'}? '' : 'Hidden'">Форма организации</span>
+                <span id="OrgName_label" th:class="${obj.client.type=='legal'}? '' : 'Hidden'">Название организации</span>
+            </div>
+            <div id="FormInputs" style="grid-template-rows: repeat(6, auto); top: -315px; left: 500px;">
+                <input type="text" size="12" id="TIN_input" th:value="${obj.tin}">
+                <input type="text" size="12" id="Phone_input" th:value="${obj.client.phone}">
+                <input type="text" size="40" id="Address_input" th:value="${obj.client.address}">
+                <select id="ClientType_select" disabled th:value="${obj.client.type}" th:text="${obj.client.type=='physical'}? 'Физическое лицо' : 'Юридическое лицо'">
+                    <option value="physical">Физическое лицо</option>
+                    <option value="legal">Юридическое лицо</option>
+                </select>
+                <input type="text" size="40" id="FIO_input" th:class="${obj.client.type=='physical'}? '' : 'Hidden'" th:value="${obj.client.type=='physical'}? ${obj.fullName} : ''">
+                <input type="text" size="10" id="Passport_input" th:class="${obj.client.type=='physical'}? '' : 'Hidden'" th:value="${obj.client.type=='physical'}? ${obj.passport} : ''">
+                <input type="text" size="10" id="OrgForm_input" th:class="${obj.client.type=='legal'}? '' : 'Hidden'" th:value="${obj.client.type=='legal'}? ${obj.form} : ''">
+                <input type="text" size="40" id="OrgName_input" th:class="${obj.client.type=='legal'}? '' : 'Hidden'" th:value="${obj.client.type=='legal'}? ${obj.name} : ''">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/createRequest.js"></script>
+<script src="JS/dialog.js"></script>
+<script src="JS/clients.js"></script>

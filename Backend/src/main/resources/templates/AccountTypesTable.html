@@ -24,14 +24,14 @@
             </tr>
 
             <tr th:each="row,iterStat: ${rows}">
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.id}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.name}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.profitability_fixed}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.profitability_percent}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.debiting}? 'Да' : 'Нет'"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.accrual}? 'Да' : 'Нет'"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.period}"></td>
-                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.valid}? 'Да' : 'Нет'"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.id}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.name}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.profitability_fixed}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.profitability_percent}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.debiting}? 'Да' : 'Нет'"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.accrual}? 'Да' : 'Нет'"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.period}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${row.id}" th:text="${row.valid}? 'Да' : 'Нет'"></td>
             </tr>
     </div>
 </div>
@@ -41,5 +41,6 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
-<script src="JS/editRequest.js"></script>
+<script src="JS/createRequest.js"></script>
 <script src="JS/table.js"></script>
+<script src="JS/accountTypeTable.js"></script>

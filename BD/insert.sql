@@ -7,26 +7,32 @@ INSERT INTO Physical_clients(full_name, passport, tin) VALUES('Кравченк�
 INSERT INTO Clients(type, phone, address) VALUES('physical', '89333109448', 'Москва, улица Строителей, 33');
 INSERT INTO Physical_clients(full_name, passport, tin) VALUES('Иванов Виктор', '4515752796', '883823080904');
 
+INSERT INTO Clients(type, phone, address) VALUES('legal', '89333109448', 'Москва, улица Строителей, 33');
+INSERT INTO Legal_clients(id, name, form, tin) VALUES(4, 'У черта на макушке', 'ООО', '8838230809');
+
+INSERT INTO Clients(type, phone, address) VALUES('legal', '89333109448', 'Москва, улица Строителей, 33');
+INSERT INTO Legal_clients(id, name, form, tin) VALUES(5, 'Рога и копыта', 'ИП', '8838230809');
+
 INSERT INTO Clients(type, phone, address) VALUES('physical', '79495115354', 'Саратовv, улица Ельцина, 30');
-INSERT INTO Physical_clients(full_name, passport, tin) VALUES('Савченко Мария', '4504549236', '926921070026');
+INSERT INTO Physical_clients(id, full_name, passport, tin) VALUES(6, 'Савченко Мария', '4504549236', '926921070026');
 
 INSERT INTO Clients(type, phone, address) VALUES('physical', '89971503763', 'Санкт Петербург, улица Ленина, 83');
-INSERT INTO Physical_clients(full_name, passport, tin) VALUES('Савченко Мария', '4507395042', '791219627649');
+INSERT INTO Physical_clients(id, full_name, passport, tin) VALUES(7, 'Савченко Мария', '4507395042', '791219627649');
 
 INSERT INTO Clients(type, phone, address) VALUES('physical', '89946143628', 'Санкт Петербург, улица Строителей, 84');
-INSERT INTO Physical_clients(full_name, passport, tin) VALUES('Куразов Павел', '4518565744', '578218496773');
+INSERT INTO Physical_clients(id, full_name, passport, tin) VALUES(8, 'Куразов Павел', '4518565744', '578218496773');
 
 INSERT INTO Clients(type, phone, address) VALUES('physical', '79670111065', 'Новосибирск, улица Ленина, 60');
-INSERT INTO Physical_clients(full_name, passport, tin) VALUES('Савченко Мария', '4512511151', '936888033418');
+INSERT INTO Physical_clients(id, full_name, passport, tin) VALUES(9, 'Савченко Мария', '4512511151', '936888033418');
 
 INSERT INTO Clients(type, phone, address) VALUES('physical', '79686141883', 'Владивосток, улица Карла-Маркса, 96');
-INSERT INTO Physical_clients(full_name, passport, tin) VALUES('Иванов Павел', '4516391994', '201090330393');
+INSERT INTO Physical_clients(id, full_name, passport, tin) VALUES(10, 'Иванов Павел', '4516391994', '201090330393');
 
 INSERT INTO Clients(type, phone, address) VALUES('physical', '89312698024', 'Владивосток, Ленинский пр-кт, 31');
-INSERT INTO Physical_clients(full_name, passport, tin) VALUES('Савченко Виктор', '4504269047', '994851603875');
+INSERT INTO Physical_clients(id, full_name, passport, tin) VALUES(11, 'Савченко Виктор', '4504269047', '994851603875');
 
 INSERT INTO Clients(type, phone, address) VALUES('physical', '89814700214', 'Санкт Петербург, Ленинский пр-кт, 75');
-INSERT INTO Physical_clients(full_name, passport, tin) VALUES('Савченко Владимир', '4504332998', '536965476846');
+INSERT INTO Physical_clients(id, full_name, passport, tin) VALUES(12, 'Савченко Владимир', '4504332998', '536965476846');
 
 
 INSERT INTO Offices(phone, address) VALUES('89509579790', 'Владивосток, Ленинский пр-кт, 13');

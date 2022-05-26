@@ -20,11 +20,11 @@
 						<span id="Valid_label">Сумма проводки</span>
 					</div>
 					<div id="FormInputs" style="grid-template-rows: repeat(5, auto); top:-263px;left:500px;">
-						<input type="text" size="20" id="ID_input" disabled>
-						<input type="text" size="20" id="Debit_input" disabled>
-						<input type="text" size="20" id="Credit_input" disabled>
-						<input type="datetime-local" size="20" id="Time_input" disabled>
-						<input type="text" size="20" id="Sum_input" disabled>
+						<input type="text" size="20" id="ID_input" disabled th:value="${obj.id}">
+						<input type="text" size="20" id="Debit_input" disabled th:value="${obj.debit_account_id}">
+						<input type="text" size="20" id="Credit_input" disabled th:value="${obj.credit_account_id}">
+						<input type="datetime-local" size="20" id="Time_input" disabled th:value="${obj.tran_time}">
+						<input type="text" size="20" id="Sum_input" disabled th:value="${obj.amount}">
 					</div>
 				</form>
 			</div>
@@ -34,5 +34,6 @@
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
-<script src="JS/editRequest.js"></script>
+<script src="JS/createRequest.js"></script>
 <script src="JS/dialog.js"></script>
+<script src="JS/transactions.js"></script>

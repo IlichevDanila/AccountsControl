@@ -56,3 +56,11 @@ function()
 
     window.location.href = "http://localhost:8080/TransactionsSearch?" + params;
 })
+
+$(document).on('click', '#CreateButton',
+function()
+{
+    var id = $("#ID_input").val();
+
+    window.location.href = "http://localhost:8080/TransactionsUpdate?id=" + id;
+})
