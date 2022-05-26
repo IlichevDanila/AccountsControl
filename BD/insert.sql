@@ -44,6 +44,10 @@ INSERT INTO Account_types(name, profitability_percent, profitability_fixed, debi
 INSERT INTO Account_types(name, profitability_percent, profitability_fixed, debiting, accrual, period) VALUES('Быстрый старт', -1.5, NULL, TRUE, TRUE, 'Monthly');
 INSERT INTO Account_types(name, profitability_percent, profitability_fixed, debiting, accrual, period) VALUES('Микрозайм', -3.0, NULL, TRUE, TRUE, 'Weekly');
 INSERT INTO Account_types(name, profitability_percent, profitability_fixed, debiting, accrual, period) VALUES('Карточный счет', NULL, 0.0, TRUE, TRUE, 'Annually');
+INSERT INTO Account_types(name, profitability_percent, profitability_fixed, debiting, accrual, period) VALUES('Трать и не копи', 0.5, NULL, FALSE, TRUE, 'Monthly');
+INSERT INTO Account_types(name, profitability_percent, profitability_fixed, debiting, accrual, period) VALUES('Медленный финиш', -1.5, NULL, TRUE, FALSE, 'Monthly');
+INSERT INTO Account_types(name, profitability_percent, profitability_fixed, debiting, accrual, period, valid) VALUES('Мегазайм', -3.0, NULL, FALSE, FALSE, 'Weekly', FALSE);
+INSERT INTO Account_types(name, profitability_percent, profitability_fixed, debiting, accrual, period, valid) VALUES('Бумажный вычет (не придумал антонимов)', NULL, 0.0, TRUE, TRUE, 'Annually', FALSE);
 
 INSERT INTO Accounts(id, client_id, type, status, balance, creating_time, response_account, loan_account) VALUES('40502961300039431303', 1, 1, 'Frozen', -111942.11, '2011-04-02 16:27:37', '40809978156646528507', NULL);
 INSERT INTO Accounts(id, client_id, type, status, balance, creating_time, response_account, loan_account) VALUES('40501978500035688960', 1, 3, 'Opened', 173610.4, '2006-09-09 13:23:24', '40808959420136160134', '40801959584027828774');

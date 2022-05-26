@@ -37,7 +37,7 @@ function()
     }
     else
     {
-        var name = $('$Name_input').val();
+        var name = $('#Name_input').val();
         var form = $('#Form_input').val();
 
         if(name != "")

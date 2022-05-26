@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Styles/main_style.css">
+    <link rel="stylesheet" href="Styles/table_style.css">
+    <title>Accounts control</title>
+</head>
+<body>
+<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
+<div id="RightPanel">
+    <div id="RightPanelHeader" th:replace="~{main::rightPanelHeader}"></div>
+    <div id="ContentPanel">
+        <table id="SearchResult">
+            <tr>
+                <th class="Attribute">ID</th>
+                <th class="Attribute">Название</th>
+                <th class="Attribute">Доходность (фикс.)</th>
+                <th class="Attribute">Доходность (проц.)</th>
+                <th class="Attribute">Списание</th>
+                <th class="Attribute">Пополнение</th>
+                <th class="Attribute">Периодичность доходности</th>
+                <th class="Attribute">Доступен</th>
+            </tr>
+
+            <tr th:each="row,iterStat: ${rows}">
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.id}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.name}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.profitability_fixed}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.profitability_percent}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.debiting}? 'Да' : 'Нет'"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.accrual}? 'Да' : 'Нет'"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.period}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.valid}? 'Да' : 'Нет'"></td>
+            </tr>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/table.js"></script>

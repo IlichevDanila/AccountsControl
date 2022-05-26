@@ -14,6 +14,7 @@
 	/*display: grid;*/
 	justify-content: center;
 	align-content: center;
+	text-align: center;
 	padding: 8px;
 	transition: 0.2s;
 	user-select: text;

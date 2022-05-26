@@ -31,6 +31,5 @@ public class Transaction {
     private Timestamp tran_time;
 
     @Column(nullable = false, name = "amount")
-    @NonNull
     private double amount;
 }

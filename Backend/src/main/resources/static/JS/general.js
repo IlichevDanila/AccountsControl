@@ -6,7 +6,8 @@ $(document).on('click', ".Entity", function(e)
 
 $("#SearchButton").click(function(e)
 {
-	console.log($(".EntityPressed"));
-	console.log("http://localhost:8080/" + $(".EntityPressed").attr('data-entityid'));
-	window.location.href = "http://localhost:8080/" + $(".EntityPressed").attr('data-entityid');
+	if($(".EntityPressed").length > 0)
+	{
+	    window.location.href = "http://localhost:8080/" + $(".EntityPressed").attr('data-entityid');
+	}
 })

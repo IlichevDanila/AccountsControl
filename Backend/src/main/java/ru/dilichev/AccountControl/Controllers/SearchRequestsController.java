@@ -1,10 +1,19 @@
 package ru.dilichev.AccountControl.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+import ru.dilichev.AccountControl.DAO.AccountTypeDAO;
+import ru.dilichev.AccountControl.Models.AccountType;
+
+import java.util.List;
 
 @Controller
 public class SearchRequestsController {
+    @Autowired
+    AccountTypeDAO accountTypeDAO;
+
     @GetMapping("/Clients")
     public String SearchClients()
     {
@@ -12,9 +21,15 @@ public class SearchRequestsController {
     }
 
     @GetMapping("/Accounts")
-    public String SearchAccounts()
+    public ModelAndView SearchAccounts(ModelAndView mv)
     {
-        return "AccountSearch";
+        mv.setViewName("AccountSearch");
+
+        List<AccountType> accTypes = accountTypeDAO.getAccountTypeByCondition(null, null, null, null,
+                null, null, null, null, null, true);
+
+        mv.addObject("accTypes", accTypes);
+        return mv;
     }
 
     @GetMapping("/AccountTypes")

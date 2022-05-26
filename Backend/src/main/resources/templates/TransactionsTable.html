@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="Styles/main_style.css">
+  <link rel="stylesheet" href="Styles/table_style.css">
+  <title>Accounts control</title>
+</head>
+<body>
+<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
+<div id="RightPanel">
+  <div id="RightPanelHeader" th:replace="~{main::rightPanelHeader}"></div>
+  <div id="ContentPanel">
+    <table id="SearchResult">
+      <tr>
+        <th class="Attribute">ID</th>
+        <th class="Attribute">Дебетовый счет</th>
+        <th class="Attribute">Кредитовый счет</th>
+        <th class="Attribute">Время</th>
+        <th class="Attribute">Сумма проводки</th>
+      </tr>
+
+      <tr th:each="row,iterStat: ${rows}">
+        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.id}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.debit_account_id}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.credit_account_id}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.tran_time}"></td>
+        <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.amount}"></td>
+      </tr>
+  </div>
+</div>
+</div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/table.js"></script>

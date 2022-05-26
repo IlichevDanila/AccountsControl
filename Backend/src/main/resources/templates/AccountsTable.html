@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Styles/main_style.css">
+    <link rel="stylesheet" href="Styles/table_style.css">
+    <title>Accounts control</title>
+</head>
+<body>
+<div id="LeftPanel" th:replace="~{main::leftPanel}"></div>
+<div id="RightPanel">
+    <div id="RightPanelHeader" th:replace="~{main::rightPanelHeader}"></div>
+    <div id="ContentPanel">
+        <table id="SearchResult">
+            <tr>
+                <th class="Attribute">ID</th>
+                <th class="Attribute">Статус</th>
+                <th class="Attribute">Момент открытия</th>
+                <th class="Attribute">Тип</th>
+                <th class="Attribute">Ответный счет</th>
+                <th class="Attribute">Ссудный счет</th>
+                <th class="Attribute">ID держателя</th>
+                <th class="Attribute">Баланс</th>
+            </tr>
+
+            <tr th:each="row,iterStat: ${rows}">
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.id}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.status}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.creating_time}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.type.name}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.response_account}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.loan_account}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.client.id}"></td>
+                <td class="Cell RowAttr"  th:attr="data-row=${iterStat.index}" th:text="${row.balance}"></td>
+            </tr>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/general.js"></script>
+<script src="JS/table.js"></script>

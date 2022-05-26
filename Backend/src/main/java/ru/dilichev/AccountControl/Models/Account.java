@@ -17,13 +17,13 @@ public class Account {
     @Column(nullable = false, name = "id")
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "client_id")
     @ToString.Exclude
     @NonNull
     private Client client;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "type")
     @ToString.Exclude
     @NonNull

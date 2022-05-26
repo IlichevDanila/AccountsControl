@@ -32,16 +32,32 @@
 							<span id="PPercent_label">в процентах</span>
 							<input type="checkbox" id="Percent_input" style="top:-9px">
 						</div>
-						<input type="checkbox" id="Debiting_input">
-						<input type="checkbox" id="Accrual_input">
+						<select id="Debiting_input">
+							<option value="null"></option>
+							<option value="True">Да</option>
+							<option value="False">Нет</option>
+						</select>
+						<select id="Accrual_input">
+							<option value="null"></option>
+							<option value="True">Да</option>
+							<option value="False">Нет</option>
+						</select>
+						<!--<input type="checkbox" id="Debiting_input">
+						<input type="checkbox" id="Accrual_input">-->
 						<select id="Period_input">
+							<option value="null"></option>
 							<option value="Daily">Ежедневно</option>
 							<option value="Weekly">Еженедельно</option>
 							<option value="Monthly">Ежемесячно</option>
 							<option value="Quarterly">Ежеквартально</option>
-							<option value="Annualy">Ежегодно</option>
+							<option value="Annually">Ежегодно</option>
 						</select>
-						<input type="checkbox" id="Valid_input">
+						<!--<input type="checkbox" id="Valid_input">-->
+						<select id="Valid_input">
+							<option value="null"></option>
+							<option value="True">Да</option>
+							<option value="False">Нет</option>
+						</select>
 					</div>
 				</form>
 			</div>
@@ -52,3 +68,4 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="JS/general.js"></script>
 <script src="JS/dialog.js"></script>
+<script src="JS/accountTypes.js"></script>
