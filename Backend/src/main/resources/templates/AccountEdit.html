@@ -29,9 +29,8 @@
 							<option value="Closed">Закрыт</option>
 							<option value="Frozen">Заморожен</option>
 						</select>
-						<input type="datetime-local" size="20" id="Date_input" disabled  th:value="${obj.creating_time}">
-						<select id="AccountType_input" disabled th:value="${obj.type.name}" th:text="${obj.type.name}">
-							<option th:each="accType,iterStat: ${accTypes}" th:value="${accType.name}" th:text="${accType.name}"></option>
+						<input type="text" size="20" id="Date_input" disabled  th:value="${obj.creating_time}">
+						<select id="AccountType_input" disabled th:value="${obj.type.id}" th:text="${obj.type.name}">
 						</select>
 						<input type="text" size="20" id="Response_input" th:value="${obj.response_account}">
 						<input type="text" size="20" id="Loan_input" th:value="${obj.loan_account}">

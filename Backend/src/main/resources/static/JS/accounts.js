@@ -71,7 +71,7 @@ function()
 
     if(accId != "")
     {
-        params += "accId=" + encodeURIComponent(accId) + "&";
+        params += "id=" + encodeURIComponent(accId) + "&";
     }
     if(status != "")
     {

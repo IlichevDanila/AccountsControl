@@ -69,7 +69,7 @@ public class TablesController {
 
     @GetMapping("/AccountsSearch")
     public ModelAndView getAccounts(
-            @RequestParam(value = "accID", defaultValue = "null", required = false) String accID,
+            @RequestParam(value = "accId", defaultValue = "null", required = false) String accID,
             @RequestParam(value = " status", defaultValue = "null", required = false) String status,
             @RequestParam(value = "date_low", defaultValue = "null", required = false) String date_low,
             @RequestParam(value = "date_high", defaultValue = "null", required = false) String date_high,

@@ -26,9 +26,9 @@
                 <input type="text" size="12" id="TIN_input" th:value="${obj.tin}">
                 <input type="text" size="12" id="Phone_input" th:value="${obj.client.phone}">
                 <input type="text" size="40" id="Address_input" th:value="${obj.client.address}">
-                <select id="ClientType_select" disabled th:value="${obj.client.type}" th:text="${obj.client.type=='physical'}? 'Физическое лицо' : 'Юридическое лицо'">
-                    <option value="physical">Физическое лицо</option>
-                    <option value="legal">Юридическое лицо</option>
+                <select id="ClientType_select" disabled th:value="${obj.client.type}">
+                    <option value="Physical">Физическое лицо</option>
+                    <option value="Legal">Юридическое лицо</option>
                 </select>
                 <input type="text" size="40" id="FIO_input" th:class="${obj.client.type=='physical'}? '' : 'Hidden'" th:value="${obj.client.type=='physical'}? ${obj.fullName} : ''">
                 <input type="text" size="10" id="Passport_input" th:class="${obj.client.type=='physical'}? '' : 'Hidden'" th:value="${obj.client.type=='physical'}? ${obj.passport} : ''">

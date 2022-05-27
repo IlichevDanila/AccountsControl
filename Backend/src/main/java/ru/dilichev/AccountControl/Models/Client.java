@@ -29,4 +29,12 @@ public class Client implements Serializable {
     @Column(nullable = false, name = "address")
     @NonNull
     private String address;
+
+    public Client(Long id, String type, String phone, String address)
+    {
+        this.id = id == null? Long.MAX_VALUE : id.longValue();
+        this.type = type;
+        this.phone = phone;
+        this.address = address;
+    }
 }

@@ -76,7 +76,7 @@ function()
     }
     params += "type=" + encodeURIComponent(type) + "&";
 
-    if(type == "Physical")
+    if(type == "Physical" || type == "physical")
     {
         var fio = $('#FIO_input').val();
         var passport = $('#Passport_input').val();

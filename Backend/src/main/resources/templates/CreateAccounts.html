@@ -29,10 +29,10 @@
                     <option value="Closed">Закрыт</option>
                     <option value="Frozen">Заморожен</option>
                 </select>
-                <input type="datetime-local" size="20" id="Date_input">
+                <input type="text" size="20" id="Date_input">
                 <select id="AccountType_input">
                     <option value="null">Нет</option>
-                    <option th:each="accType,iterStat: ${accTypes}" th:value="${accType.name}" th:text="${accType.name}"></option>
+                    <option th:each="accType,iterStat: ${accTypes}" th:value="${accType.id}" th:text="${accType.name}"></option>
                 </select>
                 <input type="text" size="20" id="Response_input">
                 <input type="text" size="20" id="Loan_input">

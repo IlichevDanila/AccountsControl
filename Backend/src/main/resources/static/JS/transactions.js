@@ -61,6 +61,29 @@ $(document).on('click', '#OKButton',
 function()
 {
     var id = $("#ID_input").val();
+    var debit = $("#Debit_input").val();
+    var credit = $("#Credit_input").val();
+    var date = $("#Date_input").val();
+    var balance = $("#Sum_input").val();
 
-    window.location.href = "http://localhost:8080/TransactionsUpdate?id=" + id;
+    params="id="+id+"&";
+
+    if(debit != "")
+    {
+        params += "debit=" + encodeURIComponent(debit) + "&";
+    }
+    if(credit != "")
+    {
+        params += "credit=" + encodeURIComponent(credit) + "&";
+    }
+    if(date != "")
+    {
+        params += "date=" + encodeURIComponent(date) + "&";
+    }
+    if(balance != "")
+    {
+        params += "balance=" + encodeURIComponent(balance) + "&";
+    }
+
+    window.location.href = "http://localhost:8080/TransactionsUpdate?" + params;
 })

@@ -1,7 +1,8 @@
 $(document).on('click', "#ClientType_select",
 function()
 {
-	if($("#ClientType_select")[0].value == "Legal" || $("#ClientType_select")[0].value == "legal")
+    console.log($(this));
+	if($("#ClientType_select").val() == "Legal" || $("#ClientType_select").val() == "legal")
 	{
 		$("#FIO_label").addClass("Hidden");
 		$("#FIO_input").addClass("Hidden");

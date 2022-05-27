@@ -71,7 +71,7 @@ public class AccountDAOImpl implements AccountDAO {
 
         if(id != null)
         {
-            sql += " id = " + id;
+            sql += " id = '" + id + "'";
             add_and = true;
         }
         if(status != null)
@@ -98,7 +98,7 @@ public class AccountDAOImpl implements AccountDAO {
             {
                 sql += " AND";
             }
-            sql += " clientId = " + clientId;
+            sql += " client_id = " + clientId;
             add_and = true;
         }
         if(response_account != null)

@@ -83,64 +83,92 @@ public class UpdateRequestController {
                                       @RequestParam(value = "form", defaultValue = "null") String form,
                                     ModelAndView mv)
     {
-        if(id.equals("null") || clientDAO.getClientByCondition(Long.valueOf(id), null, null, null).size() == 0)
+        if(tin.equals("null") ||
+                (legalClientDAO.getLegalClientByCondition(null, null, null, null, null, tin).size() == 0 &&
+                physicalClientDAO.getPhysicalClientByCondition(null, null, null, null, null, tin).size() == 0))
         {
-            if(type.equals("Physical"))
+            if(type.equals("Physical") || type.equals("physical"))
             {
                 if(!phone.equals("null") && !address.equals("null") && !tin.equals("null") && !fullName.equals("null") && !passport.equals("null"))
                 {
-                    PhysicalClient newObj = new PhysicalClient(new Client(Long.valueOf(id), type, phone, address), fullName, passport, tin);
+                    PhysicalClient newObj = new PhysicalClient(new Client(null, type, phone, address), fullName, passport, tin);
                     physicalClientDAO.addPhysicalClient(newObj);
-                    mv.addObject("rows", physicalClientDAO.getPhysicalClientByCondition(newObj.getClient().getId(),
-                            null, null, null, null, null));
+                    mv.addObject("rows", physicalClientDAO.getPhysicalClientByCondition(null,
+                            null, null, null, null, tin));
                 }
+                mv.setViewName("PhysicalClientsTable");
             }
             else
             {
                 if(!phone.equals("null") && !address.equals("null") && !tin.equals("null") && !name.equals("null") && !form.equals("null"))
                 {
-                    LegalClient newObj = new LegalClient(new Client(Long.valueOf(id), type, phone, address), name, form, tin);
+                    LegalClient newObj = new LegalClient(new Client(null, type, phone, address), name, form, tin);
                     legalClientDAO.addLegalClient(newObj);
-                    mv.addObject("rows", legalClientDAO.getLegalClientByCondition(newObj.getClient().getId(),
-                            null, null, null, null, null));
+                    mv.addObject("rows", legalClientDAO.getLegalClientByCondition(null,
+                            null, null, null, null, tin));
                 }
+                mv.setViewName("LegalClientsTable");
             }
         }
         else
         {
-            if(type.equals("Physical"))
+            if(type.equals("Physical") || type.equals("physical"))
             {
                 if(!phone.equals("null") && !address.equals("null") && !tin.equals("null") && !fullName.equals("null") && !passport.equals("null"))
                 {
-                    PhysicalClient newObj = new PhysicalClient(new Client(Long.valueOf(id), type, phone, address), fullName, passport, tin);
+                    PhysicalClient newObj = new PhysicalClient(new Client(null, type, phone, address), fullName, passport, tin);
+                    PhysicalClient oldObj = physicalClientDAO.getPhysicalClientByCondition(null, null, null, null, null, tin).get(0);
+                    newObj.getClient().setId(oldObj.getClient().getId());
                     physicalClientDAO.updatePhysicalClient(newObj);
                     mv.addObject("rows", physicalClientDAO.getPhysicalClientByCondition(newObj.getClient().getId(),
                             null, null, null, null, null));
                 }
+                mv.setViewName("PhysicalClientsTable");
             }
             else
             {
-                if(!phone.equals("null") && !address.equals("null") && !tin.equals("null") && !name.equals("null") && !form.equals("null"))
-                {
-                    LegalClient newObj = new LegalClient(new Client(Long.valueOf(id), type, phone, address), name, form, tin);
+                if (!phone.equals("null") && !address.equals("null") && !tin.equals("null") && !name.equals("null") && !form.equals("null")) {
+                    LegalClient newObj = new LegalClient(new Client(null, type, phone, address), name, form, tin);
+                    LegalClient oldObj = legalClientDAO.getLegalClientByCondition(null, null, null, null, null, tin).get(0);
+                    newObj.getClient().setId(oldObj.getClient().getId());
                     legalClientDAO.updateLegalClient(newObj);
                     mv.addObject("rows", legalClientDAO.getLegalClientByCondition(newObj.getClient().getId(),
                             null, null, null, null, null));
                 }
+                mv.setViewName("LegalClientsTable");
             }
         }
-        mv.setViewName("ClientsTable");
 
         return mv;
     }
 
     @GetMapping("/TransactionsUpdate")
     public ModelAndView UpdateTransactions(@RequestParam(value = "id", defaultValue = "null") String id,
-                                      ModelAndView mv)
+                                           @RequestParam(value = "debit", defaultValue = "null") String debit,
+                                           @RequestParam(value = "credit", defaultValue = "null") String credit,
+                                           @RequestParam(value = "date", defaultValue = "null") String date,
+                                           @RequestParam(value = "balance", defaultValue = "null") String balance,
+                                           ModelAndView mv)
     {
         mv.setViewName("TransactionsTable");
-        mv.addObject("rows", transactionDAO.getTransactionByCondition(Long.valueOf(id), null,
-                null, null, null, null, null));
+        if(id.equals("null") || transactionDAO.getTransactionByCondition(Long.valueOf(id), null, null,
+                null, null, null, null).size() == 0)
+        {
+            if(!debit.equals("null") && !credit.equals("null") && !date.equals("null") && !balance.equals("null"))
+            {
+                Transaction newObj = new Transaction(id.equals("null")? Long.MAX_VALUE : Long.valueOf(id),
+                        debit, credit, Timestamp.valueOf(date), Double.valueOf(balance));
+                transactionDAO.addTransaction(newObj);
+                mv.addObject("rows", transactionDAO.getTransactionByCondition(null, debit,
+                        credit, Timestamp.valueOf(date), Timestamp.valueOf(date), Double.valueOf(balance), Double.valueOf(balance)));
+            }
+        }
+        else
+        {
+            mv.addObject("rows", transactionDAO.getTransactionByCondition(Long.valueOf(id), debit,
+                    credit, Timestamp.valueOf(date), Timestamp.valueOf(date), Double.valueOf(balance), Double.valueOf(balance)));
+        }
+
         return mv;
     }
 
@@ -174,6 +202,23 @@ public class UpdateRequestController {
                 mv.addObject("rows", new ArrayList<Office>());
             }
         }
+        else
+        {
+            if(!name.equals("null") && !profit.equals("null") && !period.equals("null"))
+            {
+                AccountType newObj = new AccountType(Long.valueOf(id), name, percent.equals("null")? null : Double.valueOf(profit),
+                        percent.equals("null")? Double.valueOf(profit) : null, !debiting.equals("null"), !accrual.equals("null"),
+                        period, !valid.equals("null"));
+                accountTypeDAO.updateAccountType(newObj);
+                mv.addObject("rows", accountTypeDAO.getAccountTypeByCondition(newObj.getId(), null,
+                        null, null, null, null,
+                        null, null, null, null));
+            }
+            else
+            {
+                mv.addObject("rows", new ArrayList<Office>());
+            }
+        }
 
         mv.setViewName("AccountTypesTable");
 
@@ -182,7 +227,7 @@ public class UpdateRequestController {
 
     @GetMapping("/AccountsUpdate")
     public ModelAndView UpdateAccounts(@RequestParam(value = "id", defaultValue = "null") String id,
-                                       @RequestParam(value = "status", defaultValue = "null") String status,
+                                       @RequestParam(value = " status", defaultValue = "null") String status,
                                        @RequestParam(value = "date", defaultValue = "null") String date,
                                        @RequestParam(value = "type", defaultValue = "null") String type,
                                        @RequestParam(value = "response", defaultValue = "null") String response,
@@ -195,15 +240,39 @@ public class UpdateRequestController {
                 null, null, null, null,
                 null, null).size() == 0)
         {
-            if(!status.equals("null") && !date.equals("null") && !type.equals("null") && !response.equals("null") && !client.equals("null"))
+            if(!status.equals("null") && !date.equals("null") && !type.equals("null") && !client.equals("null"))
             {
                 Account newObj = new Account(id,
                         clientDAO.getClientByCondition(Long.valueOf(client), null, null, null).get(0),
-                        accountTypeDAO.getAccountTypeByCondition(null, type, null,
+                        accountTypeDAO.getAccountTypeByCondition(Long.valueOf(type), null, null,
                                 null, null, null, null,
                                 null, null, null).get(0), status, Double.valueOf(balance),
-                        Timestamp.valueOf(date), response, loan);
+                        Timestamp.valueOf(date), response.equals("null")? null : response,
+                        loan.equals("null")? null : loan);
                 accountDAO.addAccount(newObj);
+                mv.addObject("rows", accountDAO.getAccountByCondition(newObj.getId(), null,
+                        null, null, null, null,
+                        null, null, null, null));
+            }
+            else
+            {
+                mv.addObject("rows", new ArrayList<Office>());
+            }
+        }
+        else
+        {
+            if(!status.equals("null") && !date.equals("null") && !client.equals("null"))
+            {
+                Account oldObj = accountDAO.getAccountByCondition(id, null, null,
+                        null, null, null, null,
+                        null, null,null).get(0);
+                type = Long.toString(oldObj.getType().getId());
+                Account newObj = new Account(id,
+                        clientDAO.getClientByCondition(Long.valueOf(client), null, null, null).get(0),
+                        oldObj.getType(), status, Double.valueOf(balance),
+                        Timestamp.valueOf(date), response.equals("null")? oldObj.getResponse_account() : response,
+                        loan.equals("null")? oldObj.getLoan_account() : loan);
+                accountDAO.updateAccount(newObj);
                 mv.addObject("rows", accountDAO.getAccountByCondition(newObj.getId(), null,
                         null, null, null, null,
                         null, null, null, null));
